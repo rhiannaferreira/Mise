@@ -12,6 +12,7 @@ Mise never copies recipes. The chef keeps the visit and the credit.
 - **Credit up front.** Each recipe card names the chef and why they count ("3 Michelin stars", "Top Chef head judge").
 - **Built for tired evenings.** One tap for "30 minutes or less", one for "Has a video", and a "Too tired to choose? Pick for me" button that suggests something quick and well rated.
 - **My cookbook.** Bookmark recipes to come back to. Saved on your device, no account needed.
+- **Lives on your phone.** Add Mise to your home screen like an app. Your cookbook and the recipe list still open with no signal.
 - **Never a dead end.** If a dish isn't collected yet, Mise searches the web and YouTube for it, limited to the chefs' own pages.
 
 ## How the recipes get in
