@@ -12,7 +12,7 @@ const store = {
   write(set) { try { localStorage.setItem(BOOK_KEY, JSON.stringify([...set])); } catch { /* private mode */ } },
 };
 
-const state = { q: '', chefs: new Set(), quick: false, video: false, book: false, pick: null };
+const state = { q: '', chefs: new Set(), quick: false, video: false, book: false, pick: null, view: 'cards', sort: null };
 let RECIPES = [];
 let CHEFS = [];
 let BY_ID = {};
@@ -82,7 +82,13 @@ function render() {
     ? `${list.length} recipe${list.length === 1 ? '' : 's'} from ${chefsInList} chef${chefsInList === 1 ? '' : 's'}`
     : '';
 
-  $('#tickets').innerHTML = list.map(ticket).join('');
+  const compare = state.view === 'compare' && list.length > 1;
+  $('#viewSwitch').hidden = list.length < 2;
+  document.querySelectorAll('#viewSwitch [data-view]').forEach(b => b.setAttribute('aria-pressed', b.dataset.view === (compare ? 'compare' : 'cards')));
+  $('#tickets').hidden = compare;
+  $('#compare').hidden = !compare;
+  $('#tickets').innerHTML = compare ? '' : list.map(ticket).join('');
+  $('#compare').innerHTML = compare ? compareTable(list) : '';
   renderEmpty(list);
   renderShelf();
   renderPick();
@@ -97,6 +103,36 @@ function render() {
   });
   document.querySelectorAll('#cravings [data-q]').forEach(b => b.setAttribute('aria-pressed', norm(b.dataset.q) === norm(state.q)));
   syncUrl();
+}
+
+const SORTS = {
+  time: (a, b) => (a.totalMinutes ?? Infinity) - (b.totalMinutes ?? Infinity),
+  rating: (a, b) => (b.rating ?? -1) - (a.rating ?? -1) || (b.ratingCount ?? 0) - (a.ratingCount ?? 0),
+  chef: (a, b) => BY_ID[a.chef].name.localeCompare(BY_ID[b.chef].name),
+};
+
+// Every chef's take on the same dish, one row each, so the differences are easy to scan.
+function compareTable(list) {
+  const rows = state.sort ? [...list].sort(SORTS[state.sort]) : list;
+  const head = (key, label) => `<th scope="col"><button type="button" data-sort="${key}" aria-pressed="${state.sort === key}">${label}<span aria-hidden="true">${state.sort === key ? ' ↓' : ''}</span></button></th>`;
+  const none = '<span class="nil">–</span>';
+  return `<table class="compare">
+    <caption class="sr">Recipes side by side. Sort by chef, time or rating.</caption>
+    <thead><tr>${head('chef', 'Chef')}<th scope="col">Recipe</th>${head('time', 'Time')}${head('rating', 'Rating')}<th scope="col">Video</th><th scope="col"><span class="sr">Save</span></th></tr></thead>
+    <tbody>${rows.map(r => {
+      const c = BY_ID[r.chef];
+      const saved = cookbook.has(r.url);
+      return `<tr>
+        <td class="c-chef"><span class="mono">${esc(initials(c.name))}</span><span><b>${esc(c.name)}</b><small>${esc(c.credential)}</small></span></td>
+        <td class="c-title"><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.title)}</a><small>${esc(r.source)}</small></td>
+        <td class="c-num">${r.totalMinutes ? esc(formatMinutes(r.totalMinutes)) : none}</td>
+        <td class="c-num">${r.rating ? `<span class="fact rating">${icon.star}${r.rating.toFixed(1)}</span>` : none}</td>
+        <td>${r.hasVideo === true
+          ? `<span class="fact video">${icon.play}Yes</span>`
+          : `<a class="c-find" href="${esc(videoSearchUrl(c.name, r.title))}" target="_blank" rel="noopener">Find one</a>`}</td>
+        <td><button class="save" type="button" data-save="${esc(r.url)}" aria-pressed="${saved}" aria-label="${saved ? 'Remove from' : 'Save to'} my cookbook: ${esc(r.title)}">${icon.bookmark}</button></td>
+      </tr>`;
+    }).join('')}</tbody></table>`;
 }
 
 function renderEmpty(list) {
@@ -165,6 +201,7 @@ function syncUrl() {
   if (state.quick) p.set('quick', '1');
   if (state.video) p.set('video', '1');
   if (state.book) p.set('cookbook', '1');
+  if (state.view === 'compare') p.set('view', 'compare');
   const next = p.toString() ? `?${p}` : location.pathname;
   if (next !== location.search) history.replaceState(null, '', next + location.hash);
 }
@@ -176,6 +213,7 @@ function readUrl() {
   state.quick = p.get('quick') === '1';
   state.video = p.get('video') === '1';
   state.book = p.get('cookbook') === '1';
+  state.view = p.get('view') === 'compare' ? 'compare' : 'cards';
   $('#q').value = state.q;
 }
 
@@ -195,6 +233,14 @@ function wire() {
   $('#quickBtn').addEventListener('click', () => { state.quick = !state.quick; render(); });
   $('#videoBtn').addEventListener('click', () => { state.video = !state.video; render(); });
   $('#tiredBtn').addEventListener('click', pickForMe);
+  $('#viewSwitch').addEventListener('click', e => {
+    const b = e.target.closest('[data-view]'); if (!b) return;
+    state.view = b.dataset.view; render();
+  });
+  $('#compare').addEventListener('click', e => {
+    const b = e.target.closest('[data-sort]'); if (!b) return;
+    state.sort = state.sort === b.dataset.sort ? null : b.dataset.sort; render();
+  });
   $('#bookBtn').addEventListener('click', () => { state.book = !state.book; state.pick = null; render(); $('#results').scrollIntoView({ behavior: 'smooth' }); });
   $('#chefbar').addEventListener('click', e => {
     const b = e.target.closest('[data-chef]'); if (!b) return;
