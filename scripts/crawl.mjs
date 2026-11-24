@@ -82,6 +82,18 @@ function pickVaried(urls, n, salt) {
     .slice(0, n);
 }
 
+// Mise is for dishes. Drinks, syrups and infused vinegars are skipped.
+const NOT_A_DISH = /\b(cocktail|mocktail|martini|margarita|spritz(er)?|sangria|cosmos?|caipiroska|michelada|mimosa|mumosa|negroni|julep|punch|smoothie|juice|lemonade|vodka|gin|be-gin|liqueur|vinegar|syrup|bitters|shrub|latte|tea)\b/i;
+function isNotADish(f) {
+  return NOT_A_DISH.test(f.title) || (f.category || []).some(c => /\b(drink|drinks|cocktail|beverage)s?\b/.test(c));
+}
+
+let lastHtml = '';
+function diagnose(html) {
+  const ld = [...html.matchAll(/<script[^>]*ld\+json[^>]*>([\s\S]{0,4000}?)<\/script>/gi)].map(m => (m[1].match(/"@type"\s*:\s*("[^"]+"|\[[^\]]+\])/g) || []).join(',')).join(' ; ');
+  return `${html.length} bytes; ld+json types: ${ld || 'none'}; microdata recipe: ${/itemtype=["'][^"']*schema\.org\/Recipe/i.test(html)}; title: ${(html.match(/<title>([^<]{0,80})/i) || [])[1]}`;
+}
+
 async function robotsFor(host) {
   try { return parseRobots(await politeGet(`https://${host}/robots.txt`, MIN_DELAY_MS)); }
   catch { return { rules: [], delay: null, sitemaps: [] }; }
@@ -118,8 +130,10 @@ async function main() {
       for (const url of [...stale.map(r => r.url), ...fresh]) {
         if (!isAllowed(robots, new URL(url).pathname)) continue;
         let facts;
-        try { facts = factsFromHtml(await politeGet(url, delay)); } catch (e) { console.warn('  skip', e.message); continue; }
-        if (!facts?.title) continue; // not a recipe page
+        try { lastHtml = await politeGet(url, delay); facts = factsFromHtml(lastHtml); } catch (e) { console.warn('  skip', e.message); continue; }
+        if (!facts?.title) { console.warn('  no recipe data:', url, diagnose(lastHtml)); continue; } // not a recipe page
+        if (isNotADish(facts)) { known.add(url); continue; }
+        if (recipes.some(r => r.chef === chef.id && r.title.toLowerCase() === facts.title.toLowerCase() && r.url !== url)) { known.add(url); continue; }
         const isNew = !known.has(url);
         upsert(recipes, {
           url, chef: chef.id, source: source.label, title: facts.title,

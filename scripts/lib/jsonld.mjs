@@ -2,20 +2,21 @@
 // We keep only facts about the recipe (name, time, rating, video, difficulty), never its text.
 import { statedLevel, scoreLevel } from '../../src/difficulty.js';
 
-const SCRIPT_RE = /<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
+const SCRIPT_RE = /<script[^>]*type=["']?application\/ld\+json[^>]*>([\s\S]*?)<\/script>/gi;
 
 export function extractJsonLd(html) {
   const out = [];
   for (const m of html.matchAll(SCRIPT_RE)) {
     const raw = m[1].trim().replace(/^<!--|-->$/g, '');
-    try { out.push(JSON.parse(raw)); } catch { /* skip malformed blocks */ }
+    try { out.push(JSON.parse(raw)); continue; } catch { /* try again without stray control characters */ }
+    try { out.push(JSON.parse(raw.replace(/[\u0000-\u001f]+/g, ' '))); } catch { /* skip malformed blocks */ }
   }
   return out;
 }
 
 function isRecipe(node) {
   const t = node && node['@type'];
-  return Array.isArray(t) ? t.includes('Recipe') : t === 'Recipe';
+  return [].concat(t || []).some(x => /^(https?:\/\/schema\.org\/)?recipe$/i.test(String(x)));
 }
 
 export function findRecipe(blocks) {
@@ -52,7 +53,13 @@ const decode = s => String(s)
 // Flattens recipeInstructions (a string, a list, HowToStep or HowToSection) into step texts.
 export function stepTexts(v) {
   if (v == null) return [];
-  if (typeof v === 'string') return v.split(/\n+|(?<=\.)\s+(?=\d+\.\s)/).map(s => s.trim()).filter(Boolean);
+  if (typeof v === 'string') {
+    const parts = v.replace(/<[^>]+>/g, '\n').split(/\n+|(?<=\.)\s+(?=\d+\.\s)/).map(s => s.trim()).filter(Boolean);
+    if (parts.length > 1) return parts;
+    // One long paragraph: count roughly two sentences per step.
+    const sentences = v.split(/(?<=[.!?])\s+/).filter(s => s.trim().length > 3);
+    return Array.from({ length: Math.max(1, Math.ceil(sentences.length / 2)) }, (_, i) => sentences.slice(i * 2, i * 2 + 2).join(' '));
+  }
   if (Array.isArray(v)) return v.flatMap(stepTexts);
   if (typeof v === 'object') {
     if (v.itemListElement) return stepTexts(v.itemListElement);
@@ -71,7 +78,8 @@ export function recipeFacts(recipe) {
   const count = Number.parseInt(r.ratingCount ?? r.reviewCount, 10);
   const author = [].concat(recipe.author || []).map(a => (typeof a === 'string' ? a : a?.name)).filter(Boolean);
   return {
-    title: recipe.name ? decode(recipe.name) : null,
+    title: recipe.name ? decode(recipe.name).replace(/\s*[|–—]\s*(recipes?|barefoot contessa|[^|]{0,30}\.com)\s*$/i, '').trim() : null,
+    category: text(recipe.recipeCategory).map(s => decode(s).toLowerCase()),
     author: author.map(decode),
     totalMinutes: total,
     rating: Number.isFinite(rating) ? Math.round(rating * 10) / 10 : null,

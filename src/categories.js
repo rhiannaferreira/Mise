@@ -22,7 +22,7 @@ export const CUISINES = [
 
 const COURSE_WORDS = [
   ['appetizers', /\b(appetizer|starter|hors d|bruschetta|crostini|dip\b|guacamole|antipasto|arancini|crab cake|deviled|canap|tapas)/],
-  ['desserts', /\b(dessert|cake|tart|pie crust|cookie|brownie|pudding|budino|tiramisu|panna cotta|ice cream|sorbet|crumble|cobbler|cheesecake|custard|mousse)/],
+  ['desserts', /\b(dessert|cake|tarts?\b|pie crust|doughnut|donut|roulade|torte|cookie|brownie|pudding|budino|tiramisu|panna cotta|ice cream|sorbet|crumble|cobbler|cheesecake|custard|mousse)/],
   ['breakfast', /\b(breakfast|brunch|omelet|omelette|frittata|pancake|waffle|scrambled|french toast)/],
   ['soups', /\b(soup|stew|chili|chowder|bisque|gazpacho|minestrone|pepperpot|broth)/],
   ['pasta', /\b(pasta|spaghetti|penne|rigatoni|linguine|fettuc|tagliatelle|pappardelle|orecchiette|bucatini|capellini|lasagna|ravioli|tortellini|cappelletti|orzo|macaroni|gnocchi|risotto|carbonara|bolognese|shells)/],
@@ -34,7 +34,7 @@ const CUISINE_WORDS = [
   ['american', /\b(mac and cheese|macaroni and cheese)/],
   ['italian', /\b(italian|tuscan|sicilian|roman|parmesan|piccata|bruschetta|risotto|tiramisu|panna cotta|arancini|antipasto)/],
   ['french', /\b(french|provencal|provençal|bistro|gratin|tian|coq au vin|bourguignon|omelette|poulet)/],
-  ['mexican', /\b(mexican|latin|caribbean|tex-mex|southwest|taco|enchilada|burrito|quesadilla|guacamole|salsa|mole|tamale|pozole|carnitas|birria|chilaquiles|ceviche|empanada|elote|tostada|al pastor|churro)/],
+  ['mexican', /\b(mexican|latin|caribbean|tex-mex|southwest|taco|enchilada|burrito|quesadilla|guacamole|salsa(?! verde)|mole\b|tamale|pozole|carnitas|birria|chilaquiles|ceviche|empanada|elote|tostada|al pastor|churro)/],
   ['asian', /\b(asian|thai|chinese|japanese|korean|vietnamese|indian|curry|teriyaki|stir.fry|pad thai|pad kee|ramen|udon|soba|rice noodle|lo mein|gyoza|dim sum|fried rice|tikka|masala|biryani|dal\b|daal|tandoori|paneer|samosa|naan|chutney|korma|vindaloo|sushi|miso|tempura|katsu|yakitori|dashi|bao|kimchi|bulgogi|bibimbap|pho\b|banh mi|satay|szechuan|sichuan|kung pao|wonton)/],
   ['british', /\b(british|english|wellington|fish and chips|fish pie|toffee pudding|shepherd)/],
   ['mediterranean', /\b(mediterranean|greek|spanish|moroccan|lebanese|middle eastern|paella|gazpacho|souvlaki|tapas|tagine|hummus|romesco|patatas|croqueta|shakshuka|falafel|tzatziki|moussaka|spanakopita|harissa|za'atar|labneh|kebab)/],
