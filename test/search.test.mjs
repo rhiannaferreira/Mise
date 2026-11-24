@@ -57,3 +57,10 @@ test('derives dish tags from titles', () => {
   assert.deepEqual(deriveTags('Bucatini with Clams').sort(), ['pasta', 'seafood']);
   assert.ok(deriveTags('Perfect Roast Chicken').includes('chicken'));
 });
+
+test('every craving shortcut finds a recipe', () => {
+  for (const q of ['Carbonara', 'Chicken soup', 'Roast chicken', 'Burgers', 'Salmon', 'Curry', 'Mac and cheese', 'Bolognese', 'Steak', 'Brownies']) {
+    const n = search(recipes, byId, { q }).length;
+    assert.ok(n >= 1, `${q} found ${n}`);
+  }
+});

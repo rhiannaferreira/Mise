@@ -1,6 +1,6 @@
 import { search, formatMinutes, webSearchUrl, videoSearchUrl, norm } from './search.js';
 
-const CRAVINGS = ['Carbonara', 'Bolognese', 'Lemon pasta', 'Roast chicken', 'Risotto', 'Meatballs', 'Shrimp scampi', 'Steak'];
+const CRAVINGS = ['Carbonara', 'Chicken soup', 'Roast chicken', 'Burgers', 'Salmon', 'Curry', 'Mac and cheese', 'Bolognese', 'Steak', 'Brownies'];
 const BOOK_KEY = 'mise.cookbook';
 
 const $ = sel => document.querySelector(sel);
