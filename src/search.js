@@ -42,7 +42,7 @@ export function score(recipe, chef, words) {
   return total;
 }
 
-export function search(recipes, chefsById, { q = '', chefs = [], quick = false, video = false, course = '', cuisine = '' } = {}) {
+export function search(recipes, chefsById, { q = '', chefs = [], quick = false, video = false, course = '', cuisine = '', level = '' } = {}) {
   const words = tokens(q);
   const pick = new Set(chefs);
   const ranked = recipes
@@ -51,6 +51,7 @@ export function search(recipes, chefsById, { q = '', chefs = [], quick = false, 
     .filter(r => !video || r.hasVideo === true)
     .filter(r => !course || r.course === course)
     .filter(r => !cuisine || r.cuisine === cuisine)
+    .filter(r => !level || r.level === level)
     .map(r => ({ r, s: score(r, chefsById[r.chef], words) }))
     .filter(x => x.s > 0)
     .sort((a, b) => b.s - a.s || (b.r.ratingCount ?? 0) - (a.r.ratingCount ?? 0) || a.r.title.localeCompare(b.r.title))

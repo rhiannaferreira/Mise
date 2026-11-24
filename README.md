@@ -10,6 +10,7 @@ Mise never copies recipes. The chef keeps the visit and the credit.
 
 - **Search by dish.** "Carbonara", "lemon pasta", "prawns". Dish families and everyday words are understood, so "spaghetti" finds pasta and "prawns" finds shrimp.
 - **Browse the menu.** Seven courses (appetizers, pasta and risotto, mains, soups and stews, salads and sides, breakfast, desserts) and seven cuisines, with counts, so you can wander when you don't have a dish in mind.
+- **Easy to Challenge.** Every recipe carries a level: Easy, Medium or Challenge. It comes from the chef's own page when they state one, and otherwise from the recipe's size and technique (how many ingredients and steps, how long it takes, and whether it asks for things like tempering or laminating). Filter by level when you want a weeknight win or a weekend project.
 - **Credit up front.** Each recipe card names the chef and why they count ("3 Michelin stars", "Top Chef head judge").
 - **Built for tired evenings.** One tap for "30 minutes or less", one for "Has a video", and a "Too tired to choose? Pick for me" button that suggests something quick and well rated.
 - **My cookbook.** Bookmark recipes to come back to. Saved on your device, no account needed.
@@ -26,7 +27,8 @@ scripts/crawl.mjs           weekly (GitHub Actions)
    1. reads each site's robots.txt and follows it, with a 2.5 s pause between pages
    2. walks the site's sitemap for pages under the chef's own path
    3. reads the schema.org Recipe data the page publishes for search engines
-   4. keeps only: title, total time, rating, video yes/no, link
+   4. keeps only: title, total time, rating, video yes/no, level, link
+      (ingredients and steps are counted for the level, then dropped)
    5. files it under a course and cuisine (src/categories.js)
         │
         ▼
@@ -60,6 +62,7 @@ index.html            page shell
 src/main.js           rendering, filters, cookbook
 src/search.js         search and ranking (pure functions, tested)
 src/categories.js     courses, cuisines and the rules that sort new recipes into them
+src/difficulty.js     the Easy / Medium / Challenge scale and how it's worked out
 src/styles.css        the look: warm kitchen palette, order-ticket recipe cards
 scripts/crawl.mjs     the recipe collector
 scripts/lib/          schema.org, robots.txt, sitemap and tagging helpers
