@@ -44,12 +44,8 @@
             <button type="submit" class="btn btn-tomato"><span class="btn-long">Find recipes</span><span class="btn-short">Find</span></button>
           </form>
           <div class="cravings" aria-label="Popular dishes">
-            <span class="cravings-label">Craving</span>
+            <span class="cravings-label">Popular</span>
             <div class="chips" id="cravings"></div>
-          </div>
-          <div class="cravings" aria-label="Moods">
-            <span class="cravings-label">In the mood for</span>
-            <div class="chips" id="moods"></div>
           </div>
         </div>
         <figure class="pot" aria-hidden="true">
@@ -66,6 +62,17 @@
             <path class="pot-band" d="M40 118h140"/>
           </svg>
         </figure>
+      </div>
+    </section>
+
+    <section class="browse" aria-labelledby="browseTitle">
+      <div class="shell browse-inner">
+        <h2 id="browseTitle">Browse the menu</h2>
+        <ul class="courses" id="courses"></ul>
+        <div class="cuisines">
+          <span class="cravings-label">Cuisine</span>
+          <div class="chips" id="cuisines"></div>
+        </div>
       </div>
     </section>
 
@@ -89,7 +96,10 @@
 
     <section class="shell results-wrap" id="results" aria-labelledby="resultsTitle">
       <div class="results-head">
-        <h2 id="resultsTitle">Recipes</h2>
+        <div class="results-title">
+          <h2 id="resultsTitle">Recipes</h2>
+          <div class="active" id="active"></div>
+        </div>
         <div class="results-tools">
           <p class="results-count" id="resultsCount" role="status" aria-live="polite"></p>
           <div class="viewswitch" id="viewSwitch" role="group" aria-label="How to show recipes">

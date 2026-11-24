@@ -11,6 +11,7 @@ import { factsFromHtml } from './lib/jsonld.mjs';
 import { parseRobots, isAllowed } from './lib/robots.mjs';
 import { parseSitemap } from './lib/sitemap.mjs';
 import { deriveTags } from './lib/tags.mjs';
+import { guessCourse, guessCuisine } from '../src/categories.js';
 
 const ROOT = new URL('..', import.meta.url);
 const CHEFS = new URL('public/data/chefs.json', ROOT);
@@ -100,6 +101,9 @@ async function main() {
           tags: deriveTags(facts.title, facts.keywords),
           totalMinutes: facts.totalMinutes, rating: facts.rating, ratingCount: facts.ratingCount,
           hasVideo: facts.hasVideo, origin: isNew ? 'collected' : undefined, checkedAt: today,
+          // Hand-picked recipes keep the course and cuisine we gave them.
+          course: isNew ? guessCourse(facts.title, facts.keywords) : undefined,
+          cuisine: isNew ? guessCuisine(facts.title, facts.keywords, chef.cuisine) : undefined,
         });
         known.add(url);
         isNew ? added++ : refreshed++;

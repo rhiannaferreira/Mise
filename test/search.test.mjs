@@ -65,11 +65,27 @@ test('every craving shortcut finds a recipe', () => {
   }
 });
 
-test('moods group recipes without a search word', async () => {
-  const { MOODS } = await import('../src/search.js');
-  for (const id of Object.keys(MOODS)) {
-    const out = search(recipes, byId, { mood: id });
-    assert.ok(out.length >= 2, `${id} found ${out.length}`);
+test('every course and cuisine has recipes, and every recipe has both', async () => {
+  const { COURSES, CUISINES } = await import('../src/categories.js');
+  const courses = new Set(COURSES.map(c => c.id)), cuisines = new Set(CUISINES.map(c => c.id));
+  for (const r of recipes) {
+    assert.ok(courses.has(r.course), `${r.title} has course ${r.course}`);
+    assert.ok(cuisines.has(r.cuisine), `${r.title} has cuisine ${r.cuisine}`);
   }
-  assert.ok(search(recipes, byId, { mood: 'sweet' }).every(r => /dessert|brownie|pudding|budino/i.test(r.title + r.tags)));
+  for (const c of COURSES) assert.ok(search(recipes, byId, { course: c.id }).length >= 3, c.id);
+  for (const c of CUISINES) assert.ok(search(recipes, byId, { cuisine: c.id }).length >= 3, c.id);
+  assert.ok(search(recipes, byId, { course: 'desserts', cuisine: 'italian' }).every(r => r.course === 'desserts' && r.cuisine === 'italian'));
+});
+
+test('the collector guesses courses and cuisines from titles', async () => {
+  const { guessCourse, guessCuisine } = await import('../src/categories.js');
+  assert.equal(guessCourse('Crab Cakes with Slaw'), 'appetizers');
+  assert.equal(guessCourse('Chocolate Layer Cake'), 'desserts');
+  assert.equal(guessCourse('Grilled Salmon with Lentil Salad'), 'mains');
+  assert.equal(guessCourse('Chicken Noodle Soup'), 'soups');
+  assert.equal(guessCourse('Penne alla Vodka'), 'pasta');
+  assert.equal(guessCuisine('Penne alla Vodka', [], 'american'), 'italian');
+  assert.equal(guessCuisine('Beef Tacos', [], 'american'), 'mexican');
+  assert.equal(guessCuisine('Chicken Noodle Soup', [], 'american'), 'american');
+  assert.equal(guessCuisine('Roast Chicken', ['French'], 'american'), 'french');
 });

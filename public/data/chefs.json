@@ -16,7 +16,8 @@
     "pathPrefix": "/recipes/",
     "label": "Barefoot Contessa"
    }
-  ]
+  ],
+  "cuisine": "american"
  },
  {
   "id": "giada",
@@ -35,7 +36,8 @@
     "pathPrefix": "/recipes/",
     "label": "Giadzy"
    }
-  ]
+  ],
+  "cuisine": "italian"
  },
  {
   "id": "bobby",
@@ -49,7 +51,8 @@
     "pathPrefix": "/recipes/bobby-flay/",
     "label": "Food Network"
    }
-  ]
+  ],
+  "cuisine": "american"
  },
  {
   "id": "anne",
@@ -63,7 +66,8 @@
     "pathPrefix": "/recipes/anne-burrell/",
     "label": "Food Network"
    }
-  ]
+  ],
+  "cuisine": "italian"
  },
  {
   "id": "alex",
@@ -77,7 +81,8 @@
     "pathPrefix": "/recipes/alexandra-guarnaschelli/",
     "label": "Food Network"
    }
-  ]
+  ],
+  "cuisine": "american"
  },
  {
   "id": "symon",
@@ -91,7 +96,8 @@
     "pathPrefix": "/recipes/michael-symon/",
     "label": "Food Network"
    }
-  ]
+  ],
+  "cuisine": "american"
  },
  {
   "id": "ramsay",
@@ -110,7 +116,8 @@
     "pathPrefix": "/recipes/",
     "label": "Gordon Ramsay Restaurants"
    }
-  ]
+  ],
+  "cuisine": "british"
  },
  {
   "id": "jamie",
@@ -124,7 +131,8 @@
     "pathPrefix": "/recipes/",
     "label": "JamieOliver.com"
    }
-  ]
+  ],
+  "cuisine": "british"
  },
  {
   "id": "tom",
@@ -132,7 +140,8 @@
   "credential": "Top Chef head judge",
   "about": "Head judge on Top Chef. Co-founded Gramercy Tavern and founded Craft in New York.",
   "kind": "restaurant",
-  "sources": []
+  "sources": [],
+  "cuisine": "american"
  },
  {
   "id": "izard",
@@ -140,7 +149,8 @@
   "credential": "Top Chef winner",
   "about": "Won Top Chef season 4. Chef-owner of Girl & the Goat in Chicago.",
   "kind": "restaurant",
-  "sources": []
+  "sources": [],
+  "cuisine": "american"
  },
  {
   "id": "missy",
@@ -148,7 +158,8 @@
   "credential": "James Beard Best Chef NYC",
   "about": "Chef-owner of Lilia and Misi in Brooklyn, two of New York's best-loved pasta restaurants.",
   "kind": "restaurant",
-  "sources": []
+  "sources": [],
+  "cuisine": "italian"
  },
  {
   "id": "bottura",
@@ -156,7 +167,8 @@
   "credential": "3 Michelin stars",
   "about": "Chef of Osteria Francescana in Modena, twice named the world's best restaurant.",
   "kind": "restaurant",
-  "sources": []
+  "sources": [],
+  "cuisine": "italian"
  },
  {
   "id": "lidia",
@@ -170,7 +182,8 @@
     "pathPrefix": "/recipes/",
     "label": "Lidia's Italy"
    }
-  ]
+  ],
+  "cuisine": "italian"
  },
  {
   "id": "kenji",
@@ -178,7 +191,8 @@
   "credential": "The Food Lab",
   "about": "Author of The Food Lab and longtime culinary director of Serious Eats. Explains the why behind each step.",
   "kind": "tv",
-  "sources": []
+  "sources": [],
+  "cuisine": "american"
  },
  {
   "id": "pepin",
@@ -186,7 +200,8 @@
   "credential": "PBS legend",
   "about": "Cooked for three French heads of state, then taught America technique on PBS for decades. James Beard Lifetime Achievement winner.",
   "kind": "tv",
-  "sources": []
+  "sources": [],
+  "cuisine": "french"
  },
  {
   "id": "keller",
@@ -194,7 +209,8 @@
   "credential": "3 Michelin stars, twice",
   "about": "Chef of The French Laundry in Napa and Per Se in New York, both with three Michelin stars.",
   "kind": "restaurant",
-  "sources": []
+  "sources": [],
+  "cuisine": "french"
  },
  {
   "id": "andres",
@@ -202,7 +218,8 @@
   "credential": "James Beard Outstanding Chef",
   "about": "Brought Spanish tapas to America. Runs minibar in Washington, D.C. and founded World Central Kitchen.",
   "kind": "restaurant",
-  "sources": []
+  "sources": [],
+  "cuisine": "mediterranean"
  },
  {
   "id": "silverton",
@@ -210,7 +227,8 @@
   "credential": "James Beard Outstanding Chef",
   "about": "Founded La Brea Bakery and co-owns Pizzeria and Osteria Mozza in Los Angeles.",
   "kind": "restaurant",
-  "sources": []
+  "sources": [],
+  "cuisine": "italian"
  },
  {
   "id": "samuelsson",
@@ -224,7 +242,8 @@
     "pathPrefix": "/recipes/marcus-samuelsson/",
     "label": "Food Network"
    }
-  ]
+  ],
+  "cuisine": "american"
  },
  {
   "id": "kish",
@@ -232,7 +251,8 @@
   "credential": "Top Chef winner and host",
   "about": "Won Top Chef season 10 and now hosts the show.",
   "kind": "tv",
-  "sources": []
+  "sources": [],
+  "cuisine": "american"
  },
  {
   "id": "blais",
@@ -240,6 +260,7 @@
   "credential": "Top Chef All-Stars winner",
   "about": "Won Top Chef: All-Stars. Known for playful, science-minded cooking.",
   "kind": "tv",
-  "sources": []
+  "sources": [],
+  "cuisine": "american"
  }
 ]

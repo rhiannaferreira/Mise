@@ -155,6 +155,45 @@ button { font: inherit; color: inherit; }
   .pot { display: none; }
 }
 
+/* Browse the menu: courses as menu-card tiles, cuisines as chips */
+.browse { border-bottom: 1px solid var(--line); }
+.browse-inner { display: grid; gap: 16px; padding-block: 28px 26px; }
+.browse h2 { font-size: clamp(1.35rem, 2.6vw, 1.7rem); }
+.courses { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; }
+.course {
+  position: relative; width: 100%; height: 100%; display: grid; gap: 2px; align-content: start; text-align: left;
+  padding: 14px 12px 12px; border-radius: var(--radius); border: 1.5px solid var(--line); background: var(--card); cursor: pointer;
+  transition: border-color .15s, transform .15s, background .15s;
+}
+.course:hover { border-color: var(--tomato); transform: translateY(-2px); }
+.course svg { width: 30px; height: 30px; margin-bottom: 8px; fill: none; stroke: var(--tomato); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.course-name { font-family: var(--display); font-size: 1.02rem; line-height: 1.2; }
+.course-hint { font-size: .8rem; color: var(--muted); line-height: 1.35; }
+.course-count { position: absolute; top: 12px; right: 12px; font-family: var(--mono); font-size: .72rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.course[aria-pressed="true"] { background: var(--tomato); border-color: var(--tomato); color: var(--tomato-ink); }
+.course[aria-pressed="true"] svg { stroke: var(--tomato-ink); }
+.course[aria-pressed="true"] .course-hint, .course[aria-pressed="true"] .course-count { color: var(--tomato-ink); opacity: .85; }
+@media (max-width: 980px) { .courses { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 640px) {
+  .courses { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; margin-inline: -4px; padding-inline: 4px; scrollbar-width: none; }
+  .courses li { flex: 0 0 132px; scroll-snap-align: start; }
+  .course-hint { display: none; }
+}
+.cuisines { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.chip-count { font-family: var(--mono); font-size: .72rem; color: var(--muted); margin-left: 2px; }
+.chip[aria-pressed="true"] .chip-count { color: var(--ink); }
+
+/* Active filters, shown beside the results title */
+.results-title { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; min-width: 0; }
+.active { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.active:empty { display: none; }
+.active-chip {
+  display: inline-flex; align-items: center; gap: 6px; padding: 4px 6px 4px 12px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--tomato); background: var(--tomato-soft); color: var(--ink); font-size: .84rem; font-weight: 600;
+}
+.active-chip span { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; font-size: 1rem; line-height: 1; }
+.active-chip:hover span { background: var(--tomato); color: var(--tomato-ink); }
+
 /* Filters */
 .controls { display: grid; gap: 14px; padding-block: 22px 8px; }
 .toggles { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -181,10 +220,6 @@ button { font: inherit; color: inherit; }
 .chefchip:hover { border-color: var(--ink); }
 .chefchip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 .chefchip[aria-pressed="true"] .mono { background: var(--bg); color: var(--ink); }
-
-/* Mood chips read as a softer second row */
-.chip-mood { background: transparent; border-style: dashed; }
-.chip-mood[aria-pressed="true"] { border-style: solid; background: var(--basil-soft); border-color: var(--basil); }
 
 /* Loading placeholders shaped like tickets */
 .ticket.skeleton { min-height: 210px; background: linear-gradient(100deg, var(--card) 40%, var(--bg-deep) 50%, var(--card) 60%) 0 0 / 300% 100%; animation: shimmer 1.4s linear infinite; }

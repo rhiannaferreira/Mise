@@ -1,6 +1,20 @@
-import { search, formatMinutes, webSearchUrl, videoSearchUrl, norm, MOODS } from './search.js';
+import { search, formatMinutes, webSearchUrl, videoSearchUrl, norm } from './search.js';
+import { COURSES, CUISINES } from './categories.js';
 
-const CRAVINGS = ['Carbonara', 'Chicken soup', 'Roast chicken', 'Burgers', 'Salmon', 'Curry', 'Mac and cheese', 'Bolognese', 'Steak', 'Brownies'];
+const CRAVINGS = ['Carbonara', 'Roast chicken', 'Chicken soup', 'Tacos', 'Salmon', 'Tiramisu'];
+const COURSE_BY_ID = Object.fromEntries(COURSES.map(c => [c.id, c]));
+const CUISINE_BY_ID = Object.fromEntries(CUISINES.map(c => [c.id, c]));
+
+// Simple line drawings for each course, in the same stroke style as the other icons.
+const COURSE_ICON = {
+  appetizers: '<path d="M4 11a8 5 0 0 1 16 0v8H4z"/><circle cx="9" cy="14" r="1.3"/><circle cx="14.5" cy="15.5" r="1.3"/><circle cx="13" cy="11.5" r="1"/>',
+  pasta: '<path d="M3 12h18a9 7 0 0 1-18 0z"/><path d="M8 12c1-2-1-3 0-5s3-1 4-3M13 12c1-2-1-3 0-5s3-1 4-3"/>',
+  mains: '<path d="M3 18h18M5 18a7 7 0 0 1 14 0M12 9V7M10 7h4"/>',
+  soups: '<path d="M3 11h18a9 7 0 0 1-18 0z"/><path d="M9 7.5c-1-1.2 1-2 0-3.5M13 7.5c-1-1.2 1-2 0-3.5M17 7.5c-1-1.2 1-2 0-3.5"/>',
+  sides: '<path d="M5 19c0-9 6-14 15-14 0 8-5 14-15 14z"/><path d="M5 19 14 10"/>',
+  breakfast: '<path d="M12 4c5 0 8 3 7.5 7-.4 2.6-2 3.4-1.3 6.2.6 2.4-4 3.6-7.2 2.7C7.8 19 4 18.6 4.2 14.5 4.4 10.4 6.8 4 12 4z"/><circle cx="11.5" cy="12" r="3"/>',
+  desserts: '<path d="M3 20h18v-8L3 16z"/><path d="M3 16v4M21 15.5H3"/><path d="M16 8.5c0-1.5 1.5-2 1-3.5"/>',
+};
 const BOOK_KEY = 'mise.cookbook';
 
 const $ = sel => document.querySelector(sel);
@@ -12,7 +26,7 @@ const store = {
   write(set) { try { localStorage.setItem(BOOK_KEY, JSON.stringify([...set])); } catch { /* private mode */ } },
 };
 
-const state = { q: '', chefs: new Set(), quick: false, video: false, book: false, pick: null, view: 'cards', sort: null, mood: '' };
+const state = { q: '', chefs: new Set(), quick: false, video: false, book: false, pick: null, view: 'cards', sort: null, course: '', cuisine: '' };
 let RECIPES = [];
 let CHEFS = [];
 let BY_ID = {};
@@ -64,7 +78,7 @@ function ticket(r) {
 }
 
 function currentList() {
-  let list = search(RECIPES, BY_ID, { q: state.q, chefs: [...state.chefs], quick: state.quick, video: state.video, mood: state.mood });
+  let list = search(RECIPES, BY_ID, { q: state.q, chefs: [...state.chefs], quick: state.quick, video: state.video, course: state.course, cuisine: state.cuisine });
   if (state.book) list = list.filter(r => cookbook.has(r.url));
   return list;
 }
@@ -76,7 +90,7 @@ function render() {
   let title = 'Recipes from the chefs';
   if (state.book) title = 'My cookbook';
   else if (state.q) title = `${state.q.charAt(0).toUpperCase()}${state.q.slice(1)}, from the chefs`;
-  else if (state.mood) title = MOODS[state.mood].label;
+  else if (state.course || state.cuisine) title = [CUISINE_BY_ID[state.cuisine]?.label, state.course ? COURSE_BY_ID[state.course].label.toLowerCase() : 'recipes'].filter(Boolean).join(' ').replace(/^./, c => c.toUpperCase());
   else if (state.chefs.size === 1) title = `${BY_ID[[...state.chefs][0]].name}'s recipes`;
   $('#resultsTitle').textContent = title;
   $('#resultsCount').textContent = list.length
@@ -106,7 +120,9 @@ function render() {
   });
   // Keep a picked chef visible in the sideways-scrolling chef bar.
   revealPickedChef();
-  document.querySelectorAll('#moods [data-mood]').forEach(b => b.setAttribute('aria-pressed', b.dataset.mood === state.mood));
+  document.querySelectorAll('#courses [data-course]').forEach(b => b.setAttribute('aria-pressed', b.dataset.course === state.course));
+  document.querySelectorAll('#cuisines [data-cuisine]').forEach(b => b.setAttribute('aria-pressed', b.dataset.cuisine === state.cuisine));
+  renderActive();
   document.querySelectorAll('#cravings [data-q]').forEach(b => b.setAttribute('aria-pressed', norm(b.dataset.q) === norm(state.q)));
   syncUrl();
 }
@@ -146,6 +162,7 @@ function renderEmpty(list) {
   if (list.length) return;
   let msg;
   if (state.book && !cookbook.size) msg = '<h3>Your cookbook is empty</h3><p>Tap the bookmark on any recipe to keep it here for next time.</p>';
+  else if (state.course || state.cuisine) msg = `<h3>Nothing here yet</h3><p>We don\u2019t have ${esc([CUISINE_BY_ID[state.cuisine]?.label, COURSE_BY_ID[state.course]?.label.toLowerCase()].filter(Boolean).join(' '))} from these chefs yet. Try another course or cuisine, or the search below.</p>`;
   else if (state.quick || state.video) msg = '<h3>Nothing matches every filter</h3><p>Try turning off “30 minutes or less” or “Has a video”. Some recipes don’t list their time yet.</p>';
   else msg = `<h3>Not on our shelf yet</h3><p>We haven’t collected ${state.q ? `“${esc(state.q)}”` : 'that'} from these chefs yet. The search below looks for it on their own sites.</p>`;
   el.innerHTML = `<li class="empty">${msg}</li>`;
@@ -161,6 +178,31 @@ function revealPickedChef() {
   };
   center();
   document.fonts?.ready.then(center); // chip widths change once the web fonts arrive
+}
+
+// What's narrowing the list right now, each with a one-tap way to undo it.
+function renderActive() {
+  const chips = [];
+  if (state.course) chips.push(['course', COURSE_BY_ID[state.course].label]);
+  if (state.cuisine) chips.push(['cuisine', CUISINE_BY_ID[state.cuisine].label]);
+  if (state.quick) chips.push(['quick', '30 minutes or less']);
+  if (state.video) chips.push(['video', 'Has a video']);
+  $('#active').innerHTML = chips.map(([k, label]) =>
+    `<button type="button" class="active-chip" data-clear="${k}" aria-label="Remove filter: ${esc(label)}">${esc(label)}<span aria-hidden="true">\u00d7</span></button>`).join('') +
+    (chips.length > 1 ? '<button type="button" class="linkbtn" data-clear="all">Clear all</button>' : '');
+}
+
+function renderBrowse() {
+  const count = key => RECIPES.reduce((m, r) => ((m[r[key]] = (m[r[key]] || 0) + 1), m), {});
+  const courses = count('course'), cuisines = count('cuisine');
+  $('#courses').innerHTML = COURSES.map(c => `<li><button type="button" class="course" data-course="${c.id}" aria-pressed="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true">${COURSE_ICON[c.id]}</svg>
+      <span class="course-name">${esc(c.label)}</span>
+      <span class="course-hint">${esc(c.hint)}</span>
+      <span class="course-count">${courses[c.id] || 0}</span>
+    </button></li>`).join('');
+  $('#cuisines').innerHTML = CUISINES.map(c =>
+    `<button type="button" class="chip" data-cuisine="${c.id}" aria-pressed="false">${esc(c.label)} <span class="chip-count">${cuisines[c.id] || 0}</span></button>`).join('');
 }
 
 // A chef's own page: who they are, why they're here, and where to find more of their cooking.
@@ -184,7 +226,7 @@ function renderProfile() {
 }
 
 function renderShelf() {
-  const dish = state.q || 'dinner';
+  const dish = state.q || [CUISINE_BY_ID[state.cuisine]?.label, COURSE_BY_ID[state.course]?.label.toLowerCase()].filter(Boolean).join(' ') || 'dinner';
   const chefs = state.chefs.size ? CHEFS.filter(c => state.chefs.has(c.id)) : CHEFS;
   const videos = chefs.slice(0, 5).map(c =>
     `<a class="btn btn-small" href="${esc(videoSearchUrl(c.name, dish + ' recipe'))}" target="_blank" rel="noopener">${icon.play}${esc(c.name)}</a>`).join('');
@@ -240,7 +282,8 @@ function syncUrl() {
   if (state.video) p.set('video', '1');
   if (state.book) p.set('cookbook', '1');
   if (state.view === 'compare') p.set('view', 'compare');
-  if (state.mood) p.set('mood', state.mood);
+  if (state.course) p.set('course', state.course);
+  if (state.cuisine) p.set('cuisine', state.cuisine);
   const next = p.toString() ? `?${p}` : location.pathname;
   if (next !== location.search) history.replaceState(null, '', next + location.hash);
 }
@@ -253,7 +296,8 @@ function readUrl() {
   state.video = p.get('video') === '1';
   state.book = p.get('cookbook') === '1';
   state.view = p.get('view') === 'compare' ? 'compare' : 'cards';
-  state.mood = MOODS[p.get('mood')] ? p.get('mood') : '';
+  state.course = COURSE_BY_ID[p.get('course')] ? p.get('course') : '';
+  state.cuisine = CUISINE_BY_ID[p.get('cuisine')] ? p.get('cuisine') : '';
   $('#q').value = state.q;
 }
 
@@ -270,9 +314,27 @@ function wire() {
     const same = norm(state.q) === norm(b.dataset.q);
     state.q = same ? '' : b.dataset.q; $('#q').value = state.q; state.pick = null; render();
   });
-  $('#moods').addEventListener('click', e => {
-    const b = e.target.closest('[data-mood]'); if (!b) return;
-    state.mood = state.mood === b.dataset.mood ? '' : b.dataset.mood; state.pick = null; render();
+  const toResults = () => $('#results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  $('#courses').addEventListener('click', e => {
+    const b = e.target.closest('[data-course]'); if (!b) return;
+    state.course = state.course === b.dataset.course ? '' : b.dataset.course;
+    state.q = ''; $('#q').value = ''; state.pick = null; state.book = false; render();
+    if (state.course) toResults();
+  });
+  $('#cuisines').addEventListener('click', e => {
+    const b = e.target.closest('[data-cuisine]'); if (!b) return;
+    state.cuisine = state.cuisine === b.dataset.cuisine ? '' : b.dataset.cuisine;
+    state.q = ''; $('#q').value = ''; state.pick = null; state.book = false; render();
+    if (state.cuisine) toResults();
+  });
+  $('#active').addEventListener('click', e => {
+    const b = e.target.closest('[data-clear]'); if (!b) return;
+    const k = b.dataset.clear;
+    if (k === 'course' || k === 'all') state.course = '';
+    if (k === 'cuisine' || k === 'all') state.cuisine = '';
+    if (k === 'quick' || k === 'all') state.quick = false;
+    if (k === 'video' || k === 'all') state.video = false;
+    render();
   });
   $('#quickBtn').addEventListener('click', () => { state.quick = !state.quick; render(); });
   $('#videoBtn').addEventListener('click', () => { state.video = !state.video; render(); });
@@ -324,7 +386,6 @@ function wire() {
 
 async function start() {
   $('#greeting').textContent = greeting();
-  $('#moods').innerHTML = Object.entries(MOODS).map(([id, m]) => `<button type="button" class="chip chip-mood" data-mood="${id}" aria-pressed="false">${esc(m.label)}</button>`).join('');
   $('#cravings').innerHTML = CRAVINGS.map(c => `<button type="button" class="chip" data-q="${esc(c)}" aria-pressed="false">${esc(c)}</button>`).join('');
   try {
     const [chefs, recipes] = await Promise.all([
@@ -337,6 +398,7 @@ async function start() {
     return;
   }
   renderChefs();
+  renderBrowse();
   readUrl();
   wire();
   render();
