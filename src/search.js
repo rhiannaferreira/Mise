@@ -42,41 +42,31 @@ export function score(recipe, chef, words) {
   return total;
 }
 
-// Moods: loose groupings built from dish tags, for when you don't know the dish yet.
-export const MOODS = {
-  comfort: { label: 'Comfort food', tags: ['comfort', 'soup', 'stew', 'chili', 'mac', 'lasagna', 'baked', 'pot pie', 'meatballs', 'grits', 'risotto', 'gnocchi'] },
-  onepot: { label: 'One pot', tags: ['one pot', 'soup', 'stew', 'chili', 'curry', 'risotto', 'paella'] },
-  datenight: { label: 'Date night', tags: ['steak', 'wellington', 'truffle', 'scallops', 'crab', 'lobster', 'shrimp', 'cappelletti', 'filled', 'roast'] },
-  light: { label: 'Something light', tags: ['salad', 'vegetarian', 'lemon', 'gazpacho', 'omelette', 'eggs', 'salmon'] },
-  sweet: { label: 'Something sweet', tags: ['dessert', 'brownie', 'pudding', 'budino', 'cookie', 'ice cream'] },
-};
-
-export function inMood(recipe, moodId) {
-  const mood = MOODS[moodId];
-  if (!mood) return true;
-  const hay = ' ' + norm([recipe.title, ...(Array.isArray(recipe.tags) ? recipe.tags : [recipe.tags])].join(' ')) + ' ';
-  return mood.tags.some(t => hay.includes(' ' + t));
-}
-
-export function search(recipes, chefsById, { q = '', chefs = [], quick = false, video = false, mood = '' } = {}) {
+export function search(recipes, chefsById, { q = '', chefs = [], quick = false, video = false, course = '', cuisine = '' } = {}) {
   const words = tokens(q);
   const pick = new Set(chefs);
   const ranked = recipes
     .filter(r => !pick.size || pick.has(r.chef))
     .filter(r => !quick || (r.totalMinutes != null && r.totalMinutes <= 30) || norm(r.tags).includes('quick'))
     .filter(r => !video || r.hasVideo === true)
-    .filter(r => !mood || inMood(r, mood))
+    .filter(r => !course || r.course === course)
+    .filter(r => !cuisine || r.cuisine === cuisine)
     .map(r => ({ r, s: score(r, chefsById[r.chef], words) }))
     .filter(x => x.s > 0)
     .sort((a, b) => b.s - a.s || (b.r.ratingCount ?? 0) - (a.r.ratingCount ?? 0) || a.r.title.localeCompare(b.r.title))
     .map(x => x.r);
-  return words.length ? ranked : mixChefs(ranked);
+  return words.length ? ranked : mixChefs(ranked, Object.keys(chefsById));
 }
 
-// With no search words, deal recipes out chef by chef so the first screen shows variety.
-export function mixChefs(list) {
-  const piles = new Map();
+// Small stable hash so the default order looks varied but never jumps between visits.
+const hash = s => [...s].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);
+
+// With no search words, deal recipes out chef by chef (in roster order) so the first screen
+// shows variety, leading with recipes that have a video.
+export function mixChefs(list, chefOrder = []) {
+  const piles = new Map(chefOrder.map(id => [id, []]));
   for (const r of list) (piles.get(r.chef) ?? piles.set(r.chef, []).get(r.chef)).push(r);
+  for (const pile of piles.values()) pile.sort((a, b) => (b.hasVideo === true) - (a.hasVideo === true) || hash(a.title) - hash(b.title));
   const out = [];
   while (out.length < list.length) for (const pile of piles.values()) if (pile.length) out.push(pile.shift());
   return out;

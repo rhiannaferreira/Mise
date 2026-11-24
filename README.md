@@ -9,6 +9,7 @@ Mise never copies recipes. The chef keeps the visit and the credit.
 ## What it does
 
 - **Search by dish.** "Carbonara", "lemon pasta", "prawns". Dish families and everyday words are understood, so "spaghetti" finds pasta and "prawns" finds shrimp.
+- **Browse the menu.** Seven courses (appetizers, pasta and risotto, mains, soups and stews, salads and sides, breakfast, desserts) and seven cuisines, with counts, so you can wander when you don't have a dish in mind.
 - **Credit up front.** Each recipe card names the chef and why they count ("3 Michelin stars", "Top Chef head judge").
 - **Built for tired evenings.** One tap for "30 minutes or less", one for "Has a video", and a "Too tired to choose? Pick for me" button that suggests something quick and well rated.
 - **My cookbook.** Bookmark recipes to come back to. Saved on your device, no account needed.
@@ -26,6 +27,7 @@ scripts/crawl.mjs           weekly (GitHub Actions)
    2. walks the site's sitemap for pages under the chef's own path
    3. reads the schema.org Recipe data the page publishes for search engines
    4. keeps only: title, total time, rating, video yes/no, link
+   5. files it under a course and cuisine (src/categories.js)
         │
         ▼
 public/data/recipes.json    what the app searches
@@ -44,7 +46,7 @@ Needs Node 20 or newer.
 ```bash
 npm install
 npm run dev        # open the local address it prints
-npm test           # search, parsing and robots.txt tests
+npm test           # search, categories, parsing and robots.txt tests
 npm run build      # static site in dist/
 npm run crawl -- --only ina --max-new 5   # collect a few recipes by hand
 ```
@@ -57,6 +59,7 @@ The app is a static site (plain JavaScript and CSS, built with Vite), so `dist/`
 index.html            page shell
 src/main.js           rendering, filters, cookbook
 src/search.js         search and ranking (pure functions, tested)
+src/categories.js     courses, cuisines and the rules that sort new recipes into them
 src/styles.css        the look: warm kitchen palette, order-ticket recipe cards
 scripts/crawl.mjs     the recipe collector
 scripts/lib/          schema.org, robots.txt, sitemap and tagging helpers

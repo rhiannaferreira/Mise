@@ -14,7 +14,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "sides",
+  "cuisine": "american"
  },
  {
   "url": "https://www.foodnetwork.com/recipes/alexandra-guarnaschelli/macaroni-and-cheese-recipe6-1941349",
@@ -33,7 +35,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "american"
  },
  {
   "url": "https://www.cbsnews.com/news/grilling-a-paella-feast",
@@ -51,7 +55,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "mediterranean"
  },
  {
   "url": "https://joseandres.substack.com/p/tichis-gazpacho",
@@ -70,7 +76,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "soups",
+  "cuisine": "mediterranean"
  },
  {
   "url": "https://foodnetwork.com/recipes/anne-burrell/pasta-bolognese-17329168",
@@ -89,7 +97,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  },
  {
   "url": "https://foodnetwork.com/recipes/anne-burrell/spaghetti-alla-carbonara-recipe-1946891",
@@ -106,7 +116,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  },
  {
   "url": "https://www.cbsnews.com/news/the-dish-richard-blais-crab-cakes-with-brussels-sprouts-slaw",
@@ -122,7 +134,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "appetizers",
+  "cuisine": "american"
  },
  {
   "url": "https://www.cbsnews.com/news/star-spangled-surf-n-turf-from-richard-blais",
@@ -140,7 +154,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "american"
  },
  {
   "url": "https://www.foodnetwork.com/recipes/bobby-flay/chicken-cobb-burger-recipe-1953907",
@@ -156,7 +172,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "american"
  },
  {
   "url": "https://www.foodnetwork.com/recipes/bobby-flay/chicken-fried-steak-with-white-gravy-recipe-1908761",
@@ -174,7 +192,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "american"
  },
  {
   "url": "https://www.foodnetwork.com/recipes/bobby-flay/crunchburger-aka-the-signature-burger-recipe-1957434",
@@ -190,7 +210,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "american"
  },
  {
   "url": "https://foodnetwork.com/recipes/bobby-flay/fettucine-with-anchovy-butter-18246594",
@@ -206,7 +228,46 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
+ },
+ {
+  "url": "https://www.foodnetwork.com/recipes/bobby-flay/goat-cheese-enchiladas-recipe-2131361",
+  "title": "Goat Cheese Enchiladas",
+  "chef": "bobby",
+  "source": "Food Network",
+  "tags": [
+   "enchiladas",
+   "cheese",
+   "vegetarian"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "mexican"
+ },
+ {
+  "url": "https://www.foodnetwork.com/recipes/bobby-flay/green-chile-pork-burritos-with-green-green-green-2392202",
+  "title": "Green Chile Pork Burritos",
+  "chef": "bobby",
+  "source": "Food Network",
+  "tags": [
+   "burritos",
+   "pork"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "mexican"
  },
  {
   "url": "https://foodnetwork.com/recipes/bobby-flay/lasagna-recipe-1953426",
@@ -223,7 +284,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  },
  {
   "url": "https://foodnetwork.com/recipes/bobby-flay/pasta-bolognese-2646092",
@@ -242,7 +305,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  },
  {
   "url": "https://www.foodnetwork.com/recipes/bobby-flay/perfect-burger-recipe-1957542",
@@ -259,7 +324,29 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "american"
+ },
+ {
+  "url": "https://www.foodnetwork.com/recipes/bobby-flay/roasted-corn-guacamole-recipe-1926458",
+  "title": "Roasted Corn Guacamole",
+  "chef": "bobby",
+  "source": "Food Network",
+  "tags": [
+   "guacamole",
+   "corn",
+   "dip",
+   "appetizer"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null,
+  "course": "appetizers",
+  "cuisine": "mexican"
  },
  {
   "url": "https://foodnetwork.com/recipes/bobby-flay/spaghetti-and-meatballs-recipe-2012978",
@@ -276,7 +363,28 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
+ },
+ {
+  "url": "https://www.foodnetwork.com/recipes/bobby-flay/spice-rubbed-chicken-breast-tacos-with-grilled-poblanos-bbq-onions-and-coleslaw-recipe-1953280",
+  "title": "Spice-Rubbed Chicken Tacos with Grilled Poblanos",
+  "chef": "bobby",
+  "source": "Food Network",
+  "tags": [
+   "tacos",
+   "chicken",
+   "grill"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "mexican"
  },
  {
   "url": "https://foodnetwork.com/recipes/bobby-flay/truffle-pasta-7424143",
@@ -292,7 +400,29 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
+ },
+ {
+  "url": "https://www.foodnetwork.com/recipes/bobby-flay/guacamole-recipe-1961428",
+  "title": "Ultimate Guacamole",
+  "chef": "bobby",
+  "source": "Food Network",
+  "tags": [
+   "guacamole",
+   "avocado",
+   "dip",
+   "appetizer"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null,
+  "course": "appetizers",
+  "cuisine": "mexican"
  },
  {
   "url": "https://www.kcrw.com/culture/shows/good-food/recipe-massimo-botturas-spaghetti-caterse",
@@ -310,7 +440,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  },
  {
   "url": "https://foodnetwork.com/recipes/giada-de-laurentiis/calabrian-chile-pasta-2580771",
@@ -327,7 +459,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  },
  {
   "url": "https://giadzy.com/blogs/recipes/chicken-milanese-giada-de-laurentiis",
@@ -342,7 +476,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "italian"
  },
  {
   "url": "https://www.foodnetwork.com/recipes/giada-de-laurentiis/chicken-parmesan-recipe-1942593",
@@ -358,7 +494,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "italian"
  },
  {
   "url": "https://www.foodnetwork.com/recipes/giada-de-laurentiis/chicken-piccata-recipe2-1913809",
@@ -374,7 +512,29 @@
   "ratingCount": null,
   "hasVideo": true,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "italian"
+ },
+ {
+  "url": "https://www.foodnetwork.com/recipes/giada-de-laurentiis/crab-arancini-3691540",
+  "title": "Crab Arancini",
+  "chef": "giada",
+  "source": "Food Network",
+  "tags": [
+   "arancini",
+   "rice",
+   "crab",
+   "appetizer"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null,
+  "course": "appetizers",
+  "cuisine": "italian"
  },
  {
   "url": "https://foodnetwork.com/recipes/giada-de-laurentiis/creamy-parmesan-baked-pasta-8148304",
@@ -391,7 +551,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  },
  {
   "url": "https://giadzy.com/recipes/lemon-and-chive-risotto-giada",
@@ -409,7 +571,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  },
  {
   "url": "https://foodnetwork.com/recipes/giada-de-laurentiis/lemon-spaghetti-recipe-1915566",
@@ -426,7 +590,27 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
+ },
+ {
+  "url": "https://www.foodnetwork.com/recipes/giada-de-laurentiis/mediterranean-bruschetta-recipe2-1953854",
+  "title": "Mediterranean Bruschetta",
+  "chef": "giada",
+  "source": "Food Network",
+  "tags": [
+   "bruschetta",
+   "appetizer"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null,
+  "course": "appetizers",
+  "cuisine": "italian"
  },
  {
   "url": "https://giadzy.com/recipes/giada-s-mushroom-risotto-with-peas/",
@@ -444,7 +628,29 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
+ },
+ {
+  "url": "https://www.foodnetwork.com/recipes/giada-de-laurentiis/panna-cotta-with-fresh-berries-recipe-1914437",
+  "title": "Panna Cotta with Fresh Berries",
+  "chef": "giada",
+  "source": "Food Network",
+  "tags": [
+   "dessert",
+   "panna",
+   "cotta",
+   "berries"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null,
+  "course": "desserts",
+  "cuisine": "italian"
  },
  {
   "url": "https://foodnetwork.com/recipes/giada-de-laurentiis/pasta-alla-formiana-recipe-1952405",
@@ -459,7 +665,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  },
  {
   "url": "https://foodnetwork.com/recipes/giada-de-laurentiis/pasta-ponza-recipe-1917581",
@@ -475,7 +683,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  },
  {
   "url": "https://foodnetwork.com/recipes/giada-de-laurentiis/pasta-with-creamy-white-beans-5545397",
@@ -492,7 +702,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  },
  {
   "url": "https://foodnetwork.com/recipes/giada-de-laurentiis/pasta-with-pancetta-and-tomato-sauce-recipe-1914936",
@@ -509,7 +721,28 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
+ },
+ {
+  "url": "https://www.foodnetwork.com/recipes/giada-de-laurentiis/tiramisu-recipe-1913608",
+  "title": "Tiramisu",
+  "chef": "giada",
+  "source": "Food Network",
+  "tags": [
+   "dessert",
+   "tiramisu",
+   "coffee"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null,
+  "course": "desserts",
+  "cuisine": "italian"
  },
  {
   "url": "https://foodnetwork.com/recipes/ina-garten/16-bean-pasta-e-fagioli-1-3753755",
@@ -526,7 +759,28 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "soups",
+  "cuisine": "italian"
+ },
+ {
+  "url": "https://www.foodnetwork.com/recipes/ina-garten/antipasto-platter-recipe-1993597",
+  "title": "Antipasto Platter",
+  "chef": "ina",
+  "source": "Food Network",
+  "tags": [
+   "antipasto",
+   "appetizer",
+   "party"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null,
+  "course": "appetizers",
+  "cuisine": "italian"
  },
  {
   "url": "https://foodnetwork.com/recipes/ina-garten/baked-pasta-with-tomatoes-and-eggplant-7938752",
@@ -544,7 +798,47 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
+ },
+ {
+  "url": "https://www.foodnetwork.com/recipes/ina-garten/beattys-chocolate-cake-recipe-1947521",
+  "title": "Beatty's Chocolate Cake",
+  "chef": "ina",
+  "source": "Food Network",
+  "tags": [
+   "dessert",
+   "cake",
+   "chocolate"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null,
+  "course": "desserts",
+  "cuisine": "american"
+ },
+ {
+  "url": "https://www.foodnetwork.com/recipes/ina-garten/bruschetta-recipe-1993596",
+  "title": "Bruschetta",
+  "chef": "ina",
+  "source": "Food Network",
+  "tags": [
+   "bruschetta",
+   "tomato",
+   "appetizer"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null,
+  "course": "appetizers",
+  "cuisine": "italian"
  },
  {
   "url": "https://www.foodnetwork.com/recipes/ina-garten/chicken-noodle-soup-recipe-2048981",
@@ -562,7 +856,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "soups",
+  "cuisine": "american"
  },
  {
   "url": "https://www.foodnetwork.com/recipes/ina-garten/chicken-pot-pie-soup-12140761",
@@ -579,7 +875,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "soups",
+  "cuisine": "american"
  },
  {
   "url": "https://www.foodnetwork.com/recipes/ina-garten/chicken-soup-recipe-1920290",
@@ -596,7 +894,28 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "soups",
+  "cuisine": "american"
+ },
+ {
+  "url": "https://www.foodnetwork.com/recipes/ina-garten/dark-chocolate-tart-13442854",
+  "title": "Dark Chocolate Tart",
+  "chef": "ina",
+  "source": "Food Network",
+  "tags": [
+   "dessert",
+   "tart",
+   "chocolate"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null,
+  "course": "desserts",
+  "cuisine": "french"
  },
  {
   "url": "https://foodnetwork.com/recipes/ina-garten/garlic-roast-chicken-recipe-1943498",
@@ -613,7 +932,29 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "american"
+ },
+ {
+  "url": "https://www.foodnetwork.com/recipes/ina-garten/herbed-ricotta-bruschettas-13572013",
+  "title": "Herbed Ricotta Bruschettas",
+  "chef": "ina",
+  "source": "Food Network",
+  "tags": [
+   "bruschetta",
+   "ricotta",
+   "appetizer",
+   "vegetarian"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null,
+  "course": "appetizers",
+  "cuisine": "italian"
  },
  {
   "url": "https://www.foodnetwork.com/recipes/ina-garten/mexican-chicken-soup-recipe-1948662",
@@ -630,7 +971,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "soups",
+  "cuisine": "mexican"
  },
  {
   "url": "https://foodnetwork.com/recipes/ina-garten/pasta-with-pecorino-and-pepper-recipe-1948496",
@@ -649,7 +992,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  },
  {
   "url": "https://foodnetwork.com/recipes/ina-garten/pasta-with-sun-dried-tomatoes-recipe-1944778",
@@ -665,7 +1010,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  },
  {
   "url": "https://foodnetwork.com/recipes/ina-garten/pasta-pesto-and-peas-recipe2-1944911",
@@ -681,7 +1028,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  },
  {
   "url": "https://foodnetwork.com/recipes/ina-garten/perfect-roast-chicken-recipe-1940592",
@@ -697,7 +1046,67 @@
   "ratingCount": null,
   "hasVideo": true,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "american"
+ },
+ {
+  "url": "https://www.foodnetwork.com/recipes/ina-garten/raspberry-tart-5201627",
+  "title": "Raspberry Tart",
+  "chef": "ina",
+  "source": "Food Network",
+  "tags": [
+   "dessert",
+   "tart",
+   "raspberry"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null,
+  "course": "desserts",
+  "cuisine": "french"
+ },
+ {
+  "url": "https://www.foodnetwork.com/recipes/ina-garten/roasted-winter-vegetables-recipe-1914932",
+  "title": "Roasted Winter Vegetables",
+  "chef": "ina",
+  "source": "Food Network",
+  "tags": [
+   "vegetables",
+   "side",
+   "roasted",
+   "vegetarian"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null,
+  "course": "sides",
+  "cuisine": "american"
+ },
+ {
+  "url": "https://www.foodnetwork.com/recipes/ina-garten/rosemary-roasted-potatoes-recipe-1943124",
+  "title": "Rosemary Roasted Potatoes",
+  "chef": "ina",
+  "source": "Food Network",
+  "tags": [
+   "potatoes",
+   "side",
+   "roasted"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null,
+  "course": "sides",
+  "cuisine": "american"
  },
  {
   "url": "https://www.foodnetwork.com/recipes/ina-garten/skillet-brownies0-3364939",
@@ -714,7 +1123,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "desserts",
+  "cuisine": "american"
  },
  {
   "url": "https://foodnetwork.com/recipes/ina-garten/spaghetti-aglio-e-olio-recipe-2043225",
@@ -732,7 +1143,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  },
  {
   "url": "https://foodnetwork.com/recipes/ina-garten/spring-green-spaghetti-carbonara-9903933",
@@ -749,7 +1162,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  },
  {
   "url": "https://foodnetwork.com/recipes/ina-garten/summer-garden-pasta-recipe-1925046",
@@ -766,7 +1181,29 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
+ },
+ {
+  "url": "https://www.foodnetwork.com/recipes/ina-garten/vegetable-tian-recipe-1943236",
+  "title": "Vegetable Tian",
+  "chef": "ina",
+  "source": "Food Network",
+  "tags": [
+   "vegetables",
+   "side",
+   "baked",
+   "vegetarian"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null,
+  "course": "sides",
+  "cuisine": "french"
  },
  {
   "url": "https://www.jamieoliver.com/recipes/chicken/chicken-garden-soup/",
@@ -782,7 +1219,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "soups",
+  "cuisine": "british"
  },
  {
   "url": "https://jamieoliver.com/recipes/pasta/easy-carbonara/",
@@ -798,7 +1237,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  },
  {
   "url": "https://www.jamieoliver.com/recipes/chicken/easy-chicken-curry/",
@@ -814,7 +1255,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "asian"
  },
  {
   "url": "https://www.jamieoliver.com/recipes/chicken/fragrant-green-chicken-curry/",
@@ -831,7 +1274,28 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "asian"
+ },
+ {
+  "url": "https://www.jamieoliver.com/recipes/noodles/fried-flat-rice-noodles/",
+  "title": "Fried Flat Rice Noodles",
+  "chef": "jamie",
+  "source": "JamieOliver.com",
+  "tags": [
+   "noodles",
+   "stir",
+   "fry"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "asian"
  },
  {
   "url": "https://jamieoliver.com/recipes/pasta/gennaro-s-classic-spaghetti-carbonara/",
@@ -848,7 +1312,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  },
  {
   "url": "https://jamieoliver.com/recipes/pasta/mushroom-carbonara/",
@@ -866,7 +1332,51 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
+ },
+ {
+  "url": "https://www.jamieoliver.com/recipes/chicken/pad-kee-mao/",
+  "title": "Pad Kee Mao (Drunken Noodles)",
+  "chef": "jamie",
+  "source": "JamieOliver.com",
+  "tags": [
+   "noodles",
+   "chicken",
+   "thai",
+   "spicy"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "asian"
+ },
+ {
+  "url": "https://www.jamieoliver.com/recipes/seafood-recipes/prawn-tofu-pad-thai",
+  "title": "Prawn and Tofu Pad Thai",
+  "chef": "jamie",
+  "source": "JamieOliver.com",
+  "tags": [
+   "pad",
+   "thai",
+   "noodles",
+   "shrimp",
+   "tofu",
+   "thai"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "asian"
  },
  {
   "url": "https://www.masterclass.com/articles/thomas-kellers-perfect-oven-roasted-chicken",
@@ -882,7 +1392,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "french"
  },
  {
   "url": "https://goop.com/recipes/thomas-keller-roast-chicken/",
@@ -898,7 +1410,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "french"
  },
  {
   "url": "https://tastecooking.com/recipes/beef-ribeye-steak/",
@@ -914,7 +1428,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "american"
  },
  {
   "url": "https://www.cbsnews.com/news/recipe-baked-stuffed-shells",
@@ -931,7 +1447,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  },
  {
   "url": "https://kcrw.com/culture/shows/good-food/recipe-lidia-bastianichs-meatballs-with-eggplant-polpette-con-melanzane",
@@ -947,7 +1465,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "italian"
  },
  {
   "url": "https://www.wgbh.org/lifestyle/food/2015-12-13/dig-into-lidia-bastianichs-shrimp-alla-buzara",
@@ -963,7 +1483,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "italian"
  },
  {
   "url": "https://amp.cbc.ca/lite/story/1.5030223",
@@ -980,7 +1502,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  },
  {
   "url": "https://archive.jamesbeard.org/recipes/cacio-e-pepe-kugel",
@@ -999,7 +1523,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  },
  {
   "url": "https://archive.jamesbeard.org/recipes/fettuccini-with-zucchini-garlic-scapes-and-lemon",
@@ -1017,7 +1543,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  },
  {
   "url": "https://www.rachaelrayshow.com/recipes/homemade-orecchiette-with-broccoli-rabe-missy-robbins-and-talia-baiocchi",
@@ -1034,7 +1562,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  },
  {
   "url": "https://cherrybombe.com/blogs/recipes/missy-robbins-mafaldine",
@@ -1049,7 +1579,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  },
  {
   "url": "https://content.ctpublic.org/recipes/rigatoni-diavola",
@@ -1067,7 +1599,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  },
  {
   "url": "https://www.pbs.org/wnet/americanmasters/jacques-pepin-makes-a-country-omelet/23411",
@@ -1084,7 +1618,9 @@
   "ratingCount": null,
   "hasVideo": true,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "breakfast",
+  "cuisine": "french"
  },
  {
   "url": "https://www.pbs.org/wnet/americanmasters/jacques-pepin-makes-a-seafood-omelet/23423",
@@ -1101,7 +1637,9 @@
   "ratingCount": null,
   "hasVideo": true,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "breakfast",
+  "cuisine": "french"
  },
  {
   "url": "https://www.saveur.com/jacques-pepin-perfect-omelette",
@@ -1119,7 +1657,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "breakfast",
+  "cuisine": "french"
  },
  {
   "url": "https://www.gordonramsay.com/gr/recipes/gordons-10-minute-stir-fry/",
@@ -1137,7 +1677,9 @@
   "ratingCount": null,
   "hasVideo": true,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "asian"
  },
  {
   "url": "https://www.gordonramsay.com/gr/recipes/bavette-steak-with-rosemary-chimichurri/",
@@ -1153,7 +1695,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "american"
  },
  {
   "url": "https://gordonramsay.com/gr/recipes/beetcappelletti/",
@@ -1170,7 +1714,27 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
+ },
+ {
+  "url": "https://www.gordonramsay.com/gr/recipes/bread-and-butter-pudding/",
+  "title": "Bread and Butter Pudding",
+  "chef": "ramsay",
+  "source": "GordonRamsay.com",
+  "tags": [
+   "dessert",
+   "pudding"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null,
+  "course": "desserts",
+  "cuisine": "british"
  },
  {
   "url": "https://gordonramsay.com/gr/recipes/gordons-carbonara-in-under-10-minutes/",
@@ -1187,7 +1751,9 @@
   "ratingCount": null,
   "hasVideo": true,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  },
  {
   "url": "https://gordonramsayrestaurants.com/recipes/classic-beef-wellington/",
@@ -1204,7 +1770,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "british"
  },
  {
   "url": "https://www.gordonramsay.com/gr/recipes/gordons-fish-and-chips-in-10-minutes/",
@@ -1221,7 +1789,9 @@
   "ratingCount": null,
   "hasVideo": true,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "british"
  },
  {
   "url": "https://www.gordonramsay.com/gr/recipes/fish-pie/",
@@ -1239,7 +1809,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "british"
  },
  {
   "url": "https://www.gordonramsay.com/gr/recipes/grilled-salmon-with-garlic-mushroom-and-lentil-salad/",
@@ -1257,7 +1829,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "american"
  },
  {
   "url": "https://gordonramsay.com/gr/recipes/home-made-gnocchi/",
@@ -1273,7 +1847,28 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
+ },
+ {
+  "url": "https://www.gordonramsay.com/gr/recipes/stickytoffee-pudding/",
+  "title": "Individual Sticky Toffee Puddings",
+  "chef": "ramsay",
+  "source": "GordonRamsay.com",
+  "tags": [
+   "dessert",
+   "pudding",
+   "toffee"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null,
+  "course": "desserts",
+  "cuisine": "british"
  },
  {
   "url": "https://gordonramsay.com/gr/recipes/cornish-seaside-sausage-spaghetti/",
@@ -1290,7 +1885,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  },
  {
   "url": "https://gordonramsay.com/gr/recipes/ramsay-in-10-shrimp-scampi-with-capellini-pasta/",
@@ -1309,7 +1906,9 @@
   "ratingCount": null,
   "hasVideo": true,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  },
  {
   "url": "https://gordonramsay.com/gr/recipes/simplemarinara/",
@@ -1327,7 +1926,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  },
  {
   "url": "https://www.gordonramsay.com/gr/recipes/teriyaki-salmon/",
@@ -1344,7 +1945,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "asian"
  },
  {
   "url": "https://www.cbsnews.com/news/recipe-bitter-greens-and-grapefruit-marcus-samuelsson",
@@ -1360,7 +1963,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "sides",
+  "cuisine": "american"
  },
  {
   "url": "https://wtop.com/lifestyle/2026/02/marcus-samuelsson-shares-a-comfort-food-recipe-for-oxtail-pepperpot-with-dumplings/",
@@ -1378,7 +1983,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "soups",
+  "cuisine": "mexican"
  },
  {
   "url": "https://abcnews.go.com/food/story/marcus-samuelsson-shares-shrimp-grits-recipe-cookbook-73851183",
@@ -1396,7 +2003,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "american"
  },
  {
   "url": "https://archive.jamesbeard.org/recipes/butterscotch-budino-with-caramel-sauce-and-rosemary-pine-nut-cookies",
@@ -1413,7 +2022,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "desserts",
+  "cuisine": "italian"
  },
  {
   "url": "https://www.oprah.com/food/nancys-pizza-dough",
@@ -1430,7 +2041,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "italian"
  },
  {
   "url": "https://www.foodnetwork.com/recipes/michael-symon/chicken-and-pork-souvlaki-11436678",
@@ -1448,7 +2061,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "mediterranean"
  },
  {
   "url": "https://www.foodnetwork.com/recipes/michael-symon/one-pot-chicken-8378950",
@@ -1465,7 +2080,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "american"
  },
  {
   "url": "https://www.foodnetwork.com/recipes/michael-symon/pasta-with-meat-sauce-8538178",
@@ -1483,7 +2100,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  },
  {
   "url": "https://www.foodnetwork.com/recipes/michael-symon/pick-a-meat-chili-8392522",
@@ -1500,7 +2119,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "soups",
+  "cuisine": "american"
  },
  {
   "url": "https://www.cbsnews.com/news/recipe-tom-colicchio-skirt-steak",
@@ -1516,7 +2137,9 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "mains",
+  "cuisine": "american"
  },
  {
   "url": "https://www.jamesbeard.org/recipes/tom-colicchios-spring-pasta",
@@ -1532,6 +2155,8 @@
   "ratingCount": null,
   "hasVideo": null,
   "origin": "hand-picked",
-  "checkedAt": null
+  "checkedAt": null,
+  "course": "pasta",
+  "cuisine": "italian"
  }
 ]
