@@ -439,8 +439,9 @@
   "sources": [
    {
     "host": "www.aveceric.com",
-    "pathPrefix": "/recipes/",
-    "label": "Avec Eric"
+    "pathPrefix": "/all-recipes/",
+    "label": "Avec Eric",
+    "titleOnly": true
    }
   ],
   "cuisine": "french"

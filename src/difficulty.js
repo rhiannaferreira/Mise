@@ -24,7 +24,7 @@ const HARD_DISHES = /\b(wellington|soufflé|souffle|croissant|consomm|cassoulet|
 const EASY_DISHES = /\b(salad|toast|sandwich|dip\b|guacamole|bruschetta|crostini|smoothie|scrambled|omelet|vinaigrette|slaw|quesadilla|grilled cheese|frittata|aglio|cacio e pepe|pesto|roasted vegetables|sheet.pan|one.pan|5.ingredient|quick|easy|simple|weeknight)/;
 
 // Baking leaves less room for error than a stovetop dish of the same size.
-export const BAKES = /\b(cream pie|pie\b|cake|crostata|galette|marshmallow|waffle|biscuit|buns?\b|bread\b|focaccia|torte|souffl|meringue|pavlova|eclair|profiterole)/;
+export const BAKES = /\b(cream pie|pie\b|(?<!crab |fish |potato |rice )cakes?\b|crostata|galette|marshmallow|waffle|biscuit|buns?\b|bread\b|focaccia|torte|souffl|meringue|pavlova|eclair|profiterole)/;
 
 const STATED = [
   [/^(easy|beginner|super easy|simple|not too tricky)$/i, 'easy'],
