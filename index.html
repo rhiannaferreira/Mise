@@ -83,10 +83,17 @@
     <section class="shell results-wrap" id="results" aria-live="polite">
       <div class="results-head">
         <h2 id="resultsTitle">Recipes</h2>
-        <p class="results-count" id="resultsCount"></p>
+        <div class="results-tools">
+          <p class="results-count" id="resultsCount"></p>
+          <div class="viewswitch" id="viewSwitch" role="group" aria-label="How to show recipes">
+            <button type="button" data-view="cards" aria-pressed="true">Cards</button>
+            <button type="button" data-view="compare" aria-pressed="false">Side by side</button>
+          </div>
+        </div>
       </div>
       <div class="pick" id="pick" hidden></div>
       <ol class="tickets" id="tickets"></ol>
+      <div class="compare-wrap" id="compare" hidden></div>
       <div class="shelf" id="shelf"></div>
     </section>
 

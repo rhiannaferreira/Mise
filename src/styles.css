@@ -242,6 +242,34 @@ button { font: inherit; color: inherit; }
 .dot { opacity: .5; }
 .ticket-actions { display: flex; gap: 8px; flex-wrap: wrap; }
 
+/* View switch */
+.results-tools { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.viewswitch { display: inline-flex; padding: 3px; border-radius: 999px; background: var(--bg-deep); border: 1px solid var(--line); }
+.viewswitch button { border: 0; background: none; padding: 6px 14px; border-radius: 999px; font-weight: 600; font-size: .86rem; cursor: pointer; color: var(--muted); }
+.viewswitch button[aria-pressed="true"] { background: var(--card); color: var(--ink); box-shadow: var(--shadow); }
+
+/* Side-by-side comparison */
+.results-wrap > * { min-width: 0; }
+.compare-wrap { position: relative; overflow-x: auto; border-radius: var(--radius); background: var(--card); box-shadow: var(--shadow); }
+.compare { width: 100%; border-collapse: collapse; min-width: 640px; font-size: .94rem; }
+.compare th { text-align: left; font-family: var(--mono); font-weight: 500; font-size: .74rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); padding: 14px 16px; border-bottom: 2px dashed var(--line); white-space: nowrap; }
+.compare th button { all: unset; cursor: pointer; }
+.compare th button:hover, .compare th button[aria-pressed="true"] { color: var(--tomato); }
+.compare th button:focus-visible { outline: 2px solid var(--tomato); outline-offset: 3px; }
+.compare td { padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.compare tr:last-child td { border-bottom: 0; }
+.compare tbody tr:hover { background: var(--bg-deep); }
+.compare small { display: block; color: var(--muted); font-size: .8rem; }
+.c-chef { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+.c-chef b { font-weight: 700; }
+.c-title a { font-family: var(--display); font-size: 1.05rem; text-decoration: none; }
+.c-title a:hover { color: var(--tomato); }
+.c-num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.c-find { color: var(--muted); font-size: .86rem; }
+.c-find:hover { color: var(--tomato); }
+.nil { color: var(--muted); opacity: .6; }
+.compare .save { margin: 0; }
+
 /* "Pick for me" highlight */
 .pick {
   background: var(--tomato-soft); border-radius: calc(var(--radius) + 6px); padding: 18px; display: grid; gap: 12px;
