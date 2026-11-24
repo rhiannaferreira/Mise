@@ -64,3 +64,12 @@ test('every craving shortcut finds a recipe', () => {
     assert.ok(n >= 1, `${q} found ${n}`);
   }
 });
+
+test('moods group recipes without a search word', async () => {
+  const { MOODS } = await import('../src/search.js');
+  for (const id of Object.keys(MOODS)) {
+    const out = search(recipes, byId, { mood: id });
+    assert.ok(out.length >= 2, `${id} found ${out.length}`);
+  }
+  assert.ok(search(recipes, byId, { mood: 'sweet' }).every(r => /dessert|brownie|pudding|budino/i.test(r.title + r.tags)));
+});
