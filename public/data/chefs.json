@@ -6,8 +6,16 @@
   "about": "Hosted Barefoot Contessa on Food Network since 2002. Known for simple, reliable home cooking.",
   "kind": "tv",
   "sources": [
-   { "host": "www.foodnetwork.com", "pathPrefix": "/recipes/ina-garten/", "label": "Food Network" },
-   { "host": "barefootcontessa.com", "pathPrefix": "/recipes/", "label": "Barefoot Contessa" }
+   {
+    "host": "www.foodnetwork.com",
+    "pathPrefix": "/recipes/ina-garten/",
+    "label": "Food Network"
+   },
+   {
+    "host": "barefootcontessa.com",
+    "pathPrefix": "/recipes/",
+    "label": "Barefoot Contessa"
+   }
   ]
  },
  {
@@ -17,8 +25,16 @@
   "about": "Le Cordon Bleu Paris graduate. Hosted Everyday Italian and runs the Giadzy recipe site.",
   "kind": "tv",
   "sources": [
-   { "host": "www.foodnetwork.com", "pathPrefix": "/recipes/giada-de-laurentiis/", "label": "Food Network" },
-   { "host": "giadzy.com", "pathPrefix": "/recipes/", "label": "Giadzy" }
+   {
+    "host": "www.foodnetwork.com",
+    "pathPrefix": "/recipes/giada-de-laurentiis/",
+    "label": "Food Network"
+   },
+   {
+    "host": "giadzy.com",
+    "pathPrefix": "/recipes/",
+    "label": "Giadzy"
+   }
   ]
  },
  {
@@ -28,7 +44,11 @@
   "about": "Iron Chef and host of Beat Bobby Flay. Founded Mesa Grill in New York.",
   "kind": "tv",
   "sources": [
-   { "host": "www.foodnetwork.com", "pathPrefix": "/recipes/bobby-flay/", "label": "Food Network" }
+   {
+    "host": "www.foodnetwork.com",
+    "pathPrefix": "/recipes/bobby-flay/",
+    "label": "Food Network"
+   }
   ]
  },
  {
@@ -38,7 +58,11 @@
   "about": "Culinary Institute of America graduate. Hosted Secrets of a Restaurant Chef and Worst Cooks in America.",
   "kind": "tv",
   "sources": [
-   { "host": "www.foodnetwork.com", "pathPrefix": "/recipes/anne-burrell/", "label": "Food Network" }
+   {
+    "host": "www.foodnetwork.com",
+    "pathPrefix": "/recipes/anne-burrell/",
+    "label": "Food Network"
+   }
   ]
  },
  {
@@ -48,7 +72,11 @@
   "about": "Iron Chef and Chopped judge. Executive chef at Butter in New York.",
   "kind": "restaurant",
   "sources": [
-   { "host": "www.foodnetwork.com", "pathPrefix": "/recipes/alexandra-guarnaschelli/", "label": "Food Network" }
+   {
+    "host": "www.foodnetwork.com",
+    "pathPrefix": "/recipes/alexandra-guarnaschelli/",
+    "label": "Food Network"
+   }
   ]
  },
  {
@@ -58,7 +86,11 @@
   "about": "Iron Chef and James Beard Best Chef winner. Chef-owner of Lola in Cleveland.",
   "kind": "restaurant",
   "sources": [
-   { "host": "www.foodnetwork.com", "pathPrefix": "/recipes/michael-symon/", "label": "Food Network" }
+   {
+    "host": "www.foodnetwork.com",
+    "pathPrefix": "/recipes/michael-symon/",
+    "label": "Food Network"
+   }
   ]
  },
  {
@@ -68,8 +100,16 @@
   "about": "Chef-owner of Restaurant Gordon Ramsay in London, which holds three Michelin stars.",
   "kind": "restaurant",
   "sources": [
-   { "host": "www.gordonramsay.com", "pathPrefix": "/gr/recipes/", "label": "GordonRamsay.com" },
-   { "host": "www.gordonramsayrestaurants.com", "pathPrefix": "/recipes/", "label": "Gordon Ramsay Restaurants" }
+   {
+    "host": "www.gordonramsay.com",
+    "pathPrefix": "/gr/recipes/",
+    "label": "GordonRamsay.com"
+   },
+   {
+    "host": "www.gordonramsayrestaurants.com",
+    "pathPrefix": "/recipes/",
+    "label": "Gordon Ramsay Restaurants"
+   }
   ]
  },
  {
@@ -79,7 +119,11 @@
   "about": "Trained at London's River Café before The Naked Chef. Big on quick, fresh home cooking.",
   "kind": "tv",
   "sources": [
-   { "host": "www.jamieoliver.com", "pathPrefix": "/recipes/", "label": "JamieOliver.com" }
+   {
+    "host": "www.jamieoliver.com",
+    "pathPrefix": "/recipes/",
+    "label": "JamieOliver.com"
+   }
   ]
  },
  {
@@ -121,7 +165,11 @@
   "about": "Chef-owner of Felidia in New York and host of Lidia's Kitchen on PBS.",
   "kind": "tv",
   "sources": [
-   { "host": "lidiasitaly.com", "pathPrefix": "/recipes/", "label": "Lidia's Italy" }
+   {
+    "host": "lidiasitaly.com",
+    "pathPrefix": "/recipes/",
+    "label": "Lidia's Italy"
+   }
   ]
  },
  {
@@ -129,6 +177,68 @@
   "name": "J. Kenji López-Alt",
   "credential": "The Food Lab",
   "about": "Author of The Food Lab and longtime culinary director of Serious Eats. Explains the why behind each step.",
+  "kind": "tv",
+  "sources": []
+ },
+ {
+  "id": "pepin",
+  "name": "Jacques Pépin",
+  "credential": "PBS legend",
+  "about": "Cooked for three French heads of state, then taught America technique on PBS for decades. James Beard Lifetime Achievement winner.",
+  "kind": "tv",
+  "sources": []
+ },
+ {
+  "id": "keller",
+  "name": "Thomas Keller",
+  "credential": "3 Michelin stars, twice",
+  "about": "Chef of The French Laundry in Napa and Per Se in New York, both with three Michelin stars.",
+  "kind": "restaurant",
+  "sources": []
+ },
+ {
+  "id": "andres",
+  "name": "José Andrés",
+  "credential": "James Beard Outstanding Chef",
+  "about": "Brought Spanish tapas to America. Runs minibar in Washington, D.C. and founded World Central Kitchen.",
+  "kind": "restaurant",
+  "sources": []
+ },
+ {
+  "id": "silverton",
+  "name": "Nancy Silverton",
+  "credential": "James Beard Outstanding Chef",
+  "about": "Founded La Brea Bakery and co-owns Pizzeria and Osteria Mozza in Los Angeles.",
+  "kind": "restaurant",
+  "sources": []
+ },
+ {
+  "id": "samuelsson",
+  "name": "Marcus Samuelsson",
+  "credential": "Red Rooster Harlem",
+  "about": "Chef-owner of Red Rooster in Harlem. Won Top Chef Masters and judges on Chopped.",
+  "kind": "restaurant",
+  "sources": [
+   {
+    "host": "www.foodnetwork.com",
+    "pathPrefix": "/recipes/marcus-samuelsson/",
+    "label": "Food Network"
+   }
+  ]
+ },
+ {
+  "id": "kish",
+  "name": "Kristen Kish",
+  "credential": "Top Chef winner and host",
+  "about": "Won Top Chef season 10 and now hosts the show.",
+  "kind": "tv",
+  "sources": []
+ },
+ {
+  "id": "blais",
+  "name": "Richard Blais",
+  "credential": "Top Chef All-Stars winner",
+  "about": "Won Top Chef: All-Stars. Known for playful, science-minded cooking.",
   "kind": "tv",
   "sources": []
  }

@@ -40,7 +40,7 @@
           <form class="searchbar" id="searchForm" role="search">
             <label class="sr" for="q">Search a dish</label>
             <svg class="searchbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>
-            <input id="q" name="q" type="search" placeholder="Carbonara, roast chicken, risotto…" autocomplete="off" enterkeyhint="search">
+            <input id="q" name="q" type="search" placeholder="Carbonara, roast chicken, risotto…" aria-keyshortcuts="/" autocomplete="off" enterkeyhint="search">
             <button type="submit" class="btn btn-tomato"><span class="btn-long">Find recipes</span><span class="btn-short">Find</span></button>
           </form>
           <div class="cravings" aria-label="Popular dishes">
@@ -83,11 +83,11 @@
       </div>
     </section>
 
-    <section class="shell results-wrap" id="results" aria-live="polite">
+    <section class="shell results-wrap" id="results" aria-labelledby="resultsTitle">
       <div class="results-head">
         <h2 id="resultsTitle">Recipes</h2>
         <div class="results-tools">
-          <p class="results-count" id="resultsCount"></p>
+          <p class="results-count" id="resultsCount" role="status" aria-live="polite"></p>
           <div class="viewswitch" id="viewSwitch" role="group" aria-label="How to show recipes">
             <button type="button" data-view="cards" aria-pressed="true">Cards</button>
             <button type="button" data-view="compare" aria-pressed="false">Side by side</button>
