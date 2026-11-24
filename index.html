@@ -47,6 +47,10 @@
             <span class="cravings-label">Craving</span>
             <div class="chips" id="cravings"></div>
           </div>
+          <div class="cravings" aria-label="Moods">
+            <span class="cravings-label">In the mood for</span>
+            <div class="chips" id="moods"></div>
+          </div>
         </div>
         <figure class="pot" aria-hidden="true">
           <svg viewBox="0 0 220 200">
@@ -94,8 +98,12 @@
           </div>
         </div>
       </div>
+      <div class="profile" id="profile" hidden></div>
       <div class="pick" id="pick" hidden></div>
-      <ol class="tickets" id="tickets"></ol>
+      <ol class="tickets" id="tickets" aria-busy="true">
+        <li class="ticket skeleton" aria-hidden="true"></li><li class="ticket skeleton" aria-hidden="true"></li><li class="ticket skeleton" aria-hidden="true"></li>
+        <li class="ticket skeleton" aria-hidden="true"></li><li class="ticket skeleton" aria-hidden="true"></li><li class="ticket skeleton" aria-hidden="true"></li>
+      </ol>
       <div class="compare-wrap" id="compare" hidden></div>
       <div class="shelf" id="shelf"></div>
     </section>

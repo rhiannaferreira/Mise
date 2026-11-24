@@ -42,13 +42,30 @@ export function score(recipe, chef, words) {
   return total;
 }
 
-export function search(recipes, chefsById, { q = '', chefs = [], quick = false, video = false } = {}) {
+// Moods: loose groupings built from dish tags, for when you don't know the dish yet.
+export const MOODS = {
+  comfort: { label: 'Comfort food', tags: ['comfort', 'soup', 'stew', 'chili', 'mac', 'lasagna', 'baked', 'pot pie', 'meatballs', 'grits', 'risotto', 'gnocchi'] },
+  onepot: { label: 'One pot', tags: ['one pot', 'soup', 'stew', 'chili', 'curry', 'risotto', 'paella'] },
+  datenight: { label: 'Date night', tags: ['steak', 'wellington', 'truffle', 'scallops', 'crab', 'lobster', 'shrimp', 'cappelletti', 'filled', 'roast'] },
+  light: { label: 'Something light', tags: ['salad', 'vegetarian', 'lemon', 'gazpacho', 'omelette', 'eggs', 'salmon'] },
+  sweet: { label: 'Something sweet', tags: ['dessert', 'brownie', 'pudding', 'budino', 'cookie', 'ice cream'] },
+};
+
+export function inMood(recipe, moodId) {
+  const mood = MOODS[moodId];
+  if (!mood) return true;
+  const hay = ' ' + norm([recipe.title, ...(Array.isArray(recipe.tags) ? recipe.tags : [recipe.tags])].join(' ')) + ' ';
+  return mood.tags.some(t => hay.includes(' ' + t));
+}
+
+export function search(recipes, chefsById, { q = '', chefs = [], quick = false, video = false, mood = '' } = {}) {
   const words = tokens(q);
   const pick = new Set(chefs);
   const ranked = recipes
     .filter(r => !pick.size || pick.has(r.chef))
     .filter(r => !quick || (r.totalMinutes != null && r.totalMinutes <= 30) || norm(r.tags).includes('quick'))
     .filter(r => !video || r.hasVideo === true)
+    .filter(r => !mood || inMood(r, mood))
     .map(r => ({ r, s: score(r, chefsById[r.chef], words) }))
     .filter(x => x.s > 0)
     .sort((a, b) => b.s - a.s || (b.r.ratingCount ?? 0) - (a.r.ratingCount ?? 0) || a.r.title.localeCompare(b.r.title))

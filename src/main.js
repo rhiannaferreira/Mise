@@ -1,4 +1,4 @@
-import { search, formatMinutes, webSearchUrl, videoSearchUrl, norm } from './search.js';
+import { search, formatMinutes, webSearchUrl, videoSearchUrl, norm, MOODS } from './search.js';
 
 const CRAVINGS = ['Carbonara', 'Chicken soup', 'Roast chicken', 'Burgers', 'Salmon', 'Curry', 'Mac and cheese', 'Bolognese', 'Steak', 'Brownies'];
 const BOOK_KEY = 'mise.cookbook';
@@ -12,7 +12,7 @@ const store = {
   write(set) { try { localStorage.setItem(BOOK_KEY, JSON.stringify([...set])); } catch { /* private mode */ } },
 };
 
-const state = { q: '', chefs: new Set(), quick: false, video: false, book: false, pick: null, view: 'cards', sort: null };
+const state = { q: '', chefs: new Set(), quick: false, video: false, book: false, pick: null, view: 'cards', sort: null, mood: '' };
 let RECIPES = [];
 let CHEFS = [];
 let BY_ID = {};
@@ -64,7 +64,7 @@ function ticket(r) {
 }
 
 function currentList() {
-  let list = search(RECIPES, BY_ID, { q: state.q, chefs: [...state.chefs], quick: state.quick, video: state.video });
+  let list = search(RECIPES, BY_ID, { q: state.q, chefs: [...state.chefs], quick: state.quick, video: state.video, mood: state.mood });
   if (state.book) list = list.filter(r => cookbook.has(r.url));
   return list;
 }
@@ -76,6 +76,7 @@ function render() {
   let title = 'Recipes from the chefs';
   if (state.book) title = 'My cookbook';
   else if (state.q) title = `${state.q.charAt(0).toUpperCase()}${state.q.slice(1)}, from the chefs`;
+  else if (state.mood) title = MOODS[state.mood].label;
   else if (state.chefs.size === 1) title = `${BY_ID[[...state.chefs][0]].name}'s recipes`;
   $('#resultsTitle').textContent = title;
   $('#resultsCount').textContent = list.length
@@ -89,7 +90,9 @@ function render() {
   $('#compare').hidden = !compare;
   $('#tickets').innerHTML = compare ? '' : list.map(ticket).join('');
   $('#compare').innerHTML = compare ? compareTable(list) : '';
+  $('#tickets').removeAttribute('aria-busy');
   renderEmpty(list);
+  renderProfile();
   renderShelf();
   renderPick();
 
@@ -101,6 +104,9 @@ function render() {
     const id = b.dataset.chef;
     b.setAttribute('aria-pressed', id === '' ? state.chefs.size === 0 : state.chefs.has(id));
   });
+  // Keep a picked chef visible in the sideways-scrolling chef bar.
+  revealPickedChef();
+  document.querySelectorAll('#moods [data-mood]').forEach(b => b.setAttribute('aria-pressed', b.dataset.mood === state.mood));
   document.querySelectorAll('#cravings [data-q]').forEach(b => b.setAttribute('aria-pressed', norm(b.dataset.q) === norm(state.q)));
   syncUrl();
 }
@@ -143,6 +149,38 @@ function renderEmpty(list) {
   else if (state.quick || state.video) msg = '<h3>Nothing matches every filter</h3><p>Try turning off “30 minutes or less” or “Has a video”. Some recipes don’t list their time yet.</p>';
   else msg = `<h3>Not on our shelf yet</h3><p>We haven’t collected ${state.q ? `“${esc(state.q)}”` : 'that'} from these chefs yet. The search below looks for it on their own sites.</p>`;
   el.innerHTML = `<li class="empty">${msg}</li>`;
+}
+
+function revealPickedChef() {
+  const bar = $('#chefbar');
+  const center = () => {
+    const chip = bar.querySelector('[data-chef]:not([data-chef=""])[aria-pressed="true"]');
+    if (!chip) return;
+    if (chip.offsetLeft >= bar.scrollLeft && chip.offsetLeft + chip.offsetWidth <= bar.scrollLeft + bar.clientWidth) return;
+    bar.scrollLeft = chip.offsetLeft - (bar.clientWidth - chip.offsetWidth) / 2;
+  };
+  center();
+  document.fonts?.ready.then(center); // chip widths change once the web fonts arrive
+}
+
+// A chef's own page: who they are, why they're here, and where to find more of their cooking.
+function renderProfile() {
+  const el = $('#profile');
+  const only = state.chefs.size === 1 && !state.book ? BY_ID[[...state.chefs][0]] : null;
+  if (!only) { el.hidden = true; el.innerHTML = ''; return; }
+  const count = RECIPES.filter(r => r.chef === only.id).length;
+  const sites = only.sources.map(s => `<a class="btn btn-small" href="https://${esc(s.host)}${esc(s.pathPrefix)}" target="_blank" rel="noopener">All their recipes on ${esc(s.label)} ${icon.out}</a>`).join('');
+  el.hidden = false;
+  el.innerHTML = `
+    <span class="mono huge">${esc(initials(only.name))}</span>
+    <div class="profile-text">
+      <span class="cook-cred">${esc(only.credential)}</span>
+      <h3>${esc(only.name)}</h3>
+      <p>${esc(only.about)}</p>
+      <p class="profile-count">${count} recipe${count === 1 ? '' : 's'} on Mise so far.</p>
+      <div class="shelf-row">${sites}<a class="btn btn-small" href="${esc(videoSearchUrl(only.name, 'cooking'))}" target="_blank" rel="noopener">${icon.play}Watch them cook</a>
+        <button class="linkbtn" type="button" data-allchefs>Back to every chef</button></div>
+    </div>`;
 }
 
 function renderShelf() {
@@ -202,6 +240,7 @@ function syncUrl() {
   if (state.video) p.set('video', '1');
   if (state.book) p.set('cookbook', '1');
   if (state.view === 'compare') p.set('view', 'compare');
+  if (state.mood) p.set('mood', state.mood);
   const next = p.toString() ? `?${p}` : location.pathname;
   if (next !== location.search) history.replaceState(null, '', next + location.hash);
 }
@@ -214,6 +253,7 @@ function readUrl() {
   state.video = p.get('video') === '1';
   state.book = p.get('cookbook') === '1';
   state.view = p.get('view') === 'compare' ? 'compare' : 'cards';
+  state.mood = MOODS[p.get('mood')] ? p.get('mood') : '';
   $('#q').value = state.q;
 }
 
@@ -229,6 +269,10 @@ function wire() {
     const b = e.target.closest('[data-q]'); if (!b) return;
     const same = norm(state.q) === norm(b.dataset.q);
     state.q = same ? '' : b.dataset.q; $('#q').value = state.q; state.pick = null; render();
+  });
+  $('#moods').addEventListener('click', e => {
+    const b = e.target.closest('[data-mood]'); if (!b) return;
+    state.mood = state.mood === b.dataset.mood ? '' : b.dataset.mood; state.pick = null; render();
   });
   $('#quickBtn').addEventListener('click', () => { state.quick = !state.quick; render(); });
   $('#videoBtn').addEventListener('click', () => { state.video = !state.video; render(); });
@@ -265,6 +309,7 @@ function wire() {
     }
     if (e.target.closest('[data-repick]')) pickForMe();
     if (e.target.closest('[data-unpick]')) { state.pick = null; render(); }
+    if (e.target.closest('[data-allchefs]')) { state.chefs.clear(); render(); }
   });
   // Press / anywhere to jump to the search box, Escape to clear it.
   document.addEventListener('keydown', e => {
@@ -279,6 +324,7 @@ function wire() {
 
 async function start() {
   $('#greeting').textContent = greeting();
+  $('#moods').innerHTML = Object.entries(MOODS).map(([id, m]) => `<button type="button" class="chip chip-mood" data-mood="${id}" aria-pressed="false">${esc(m.label)}</button>`).join('');
   $('#cravings').innerHTML = CRAVINGS.map(c => `<button type="button" class="chip" data-q="${esc(c)}" aria-pressed="false">${esc(c)}</button>`).join('');
   try {
     const [chefs, recipes] = await Promise.all([
