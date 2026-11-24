@@ -1,0 +1,18 @@
+{
+  "name": "mise",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Search a dish and get recipes only from chefs worth trusting, each linked to the chef's own page.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test test/*.test.mjs",
+    "crawl": "node scripts/crawl.mjs"
+  },
+  "engines": { "node": ">=20" },
+  "devDependencies": {
+    "vite": "5.4.11"
+  }
+}

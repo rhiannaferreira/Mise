@@ -1,0 +1,135 @@
+[
+ {
+  "id": "ina",
+  "name": "Ina Garten",
+  "credential": "Barefoot Contessa, Food Network",
+  "about": "Hosted Barefoot Contessa on Food Network since 2002. Known for simple, reliable home cooking.",
+  "kind": "tv",
+  "sources": [
+   { "host": "www.foodnetwork.com", "pathPrefix": "/recipes/ina-garten/", "label": "Food Network" },
+   { "host": "barefootcontessa.com", "pathPrefix": "/recipes/", "label": "Barefoot Contessa" }
+  ]
+ },
+ {
+  "id": "giada",
+  "name": "Giada De Laurentiis",
+  "credential": "Everyday Italian, Food Network",
+  "about": "Le Cordon Bleu Paris graduate. Hosted Everyday Italian and runs the Giadzy recipe site.",
+  "kind": "tv",
+  "sources": [
+   { "host": "www.foodnetwork.com", "pathPrefix": "/recipes/giada-de-laurentiis/", "label": "Food Network" },
+   { "host": "giadzy.com", "pathPrefix": "/recipes/", "label": "Giadzy" }
+  ]
+ },
+ {
+  "id": "bobby",
+  "name": "Bobby Flay",
+  "credential": "Iron Chef, Beat Bobby Flay",
+  "about": "Iron Chef and host of Beat Bobby Flay. Founded Mesa Grill in New York.",
+  "kind": "tv",
+  "sources": [
+   { "host": "www.foodnetwork.com", "pathPrefix": "/recipes/bobby-flay/", "label": "Food Network" }
+  ]
+ },
+ {
+  "id": "anne",
+  "name": "Anne Burrell",
+  "credential": "Secrets of a Restaurant Chef",
+  "about": "Culinary Institute of America graduate. Hosted Secrets of a Restaurant Chef and Worst Cooks in America.",
+  "kind": "tv",
+  "sources": [
+   { "host": "www.foodnetwork.com", "pathPrefix": "/recipes/anne-burrell/", "label": "Food Network" }
+  ]
+ },
+ {
+  "id": "alex",
+  "name": "Alex Guarnaschelli",
+  "credential": "Iron Chef, Butter NYC",
+  "about": "Iron Chef and Chopped judge. Executive chef at Butter in New York.",
+  "kind": "restaurant",
+  "sources": [
+   { "host": "www.foodnetwork.com", "pathPrefix": "/recipes/alexandra-guarnaschelli/", "label": "Food Network" }
+  ]
+ },
+ {
+  "id": "symon",
+  "name": "Michael Symon",
+  "credential": "Iron Chef, Lola Cleveland",
+  "about": "Iron Chef and James Beard Best Chef winner. Chef-owner of Lola in Cleveland.",
+  "kind": "restaurant",
+  "sources": [
+   { "host": "www.foodnetwork.com", "pathPrefix": "/recipes/michael-symon/", "label": "Food Network" }
+  ]
+ },
+ {
+  "id": "ramsay",
+  "name": "Gordon Ramsay",
+  "credential": "3 Michelin stars",
+  "about": "Chef-owner of Restaurant Gordon Ramsay in London, which holds three Michelin stars.",
+  "kind": "restaurant",
+  "sources": [
+   { "host": "www.gordonramsay.com", "pathPrefix": "/gr/recipes/", "label": "GordonRamsay.com" },
+   { "host": "www.gordonramsayrestaurants.com", "pathPrefix": "/recipes/", "label": "Gordon Ramsay Restaurants" }
+  ]
+ },
+ {
+  "id": "jamie",
+  "name": "Jamie Oliver",
+  "credential": "The Naked Chef",
+  "about": "Trained at London's River Café before The Naked Chef. Big on quick, fresh home cooking.",
+  "kind": "tv",
+  "sources": [
+   { "host": "www.jamieoliver.com", "pathPrefix": "/recipes/", "label": "JamieOliver.com" }
+  ]
+ },
+ {
+  "id": "tom",
+  "name": "Tom Colicchio",
+  "credential": "Top Chef head judge",
+  "about": "Head judge on Top Chef. Co-founded Gramercy Tavern and founded Craft in New York.",
+  "kind": "restaurant",
+  "sources": []
+ },
+ {
+  "id": "izard",
+  "name": "Stephanie Izard",
+  "credential": "Top Chef winner",
+  "about": "Won Top Chef season 4. Chef-owner of Girl & the Goat in Chicago.",
+  "kind": "restaurant",
+  "sources": []
+ },
+ {
+  "id": "missy",
+  "name": "Missy Robbins",
+  "credential": "James Beard Best Chef NYC",
+  "about": "Chef-owner of Lilia and Misi in Brooklyn, two of New York's best-loved pasta restaurants.",
+  "kind": "restaurant",
+  "sources": []
+ },
+ {
+  "id": "bottura",
+  "name": "Massimo Bottura",
+  "credential": "3 Michelin stars",
+  "about": "Chef of Osteria Francescana in Modena, twice named the world's best restaurant.",
+  "kind": "restaurant",
+  "sources": []
+ },
+ {
+  "id": "lidia",
+  "name": "Lidia Bastianich",
+  "credential": "Felidia NYC, PBS",
+  "about": "Chef-owner of Felidia in New York and host of Lidia's Kitchen on PBS.",
+  "kind": "tv",
+  "sources": [
+   { "host": "lidiasitaly.com", "pathPrefix": "/recipes/", "label": "Lidia's Italy" }
+  ]
+ },
+ {
+  "id": "kenji",
+  "name": "J. Kenji López-Alt",
+  "credential": "The Food Lab",
+  "about": "Author of The Food Lab and longtime culinary director of Serious Eats. Explains the why behind each step.",
+  "kind": "tv",
+  "sources": []
+ }
+]
