@@ -180,7 +180,8 @@
    {
     "host": "lidiasitaly.com",
     "pathPrefix": "/recipes/",
-    "label": "Lidia's Italy"
+    "label": "Lidia's Italy",
+    "titleOnly": true
    }
   ],
   "cuisine": "italian"
@@ -241,6 +242,11 @@
     "host": "www.foodnetwork.com",
     "pathPrefix": "/recipes/marcus-samuelsson/",
     "label": "Food Network"
+   },
+   {
+    "host": "marcussamuelsson.com",
+    "pathPrefix": "/recipes/",
+    "label": "MarcusSamuelsson.com"
    }
   ],
   "cuisine": "american"
@@ -262,5 +268,214 @@
   "kind": "tv",
   "sources": [],
   "cuisine": "american"
+ },
+ {
+  "id": "alton",
+  "name": "Alton Brown",
+  "credential": "Good Eats, James Beard Award",
+  "about": "Created Good Eats, the show that explains the science of cooking. Won a James Beard award for it.",
+  "kind": "tv",
+  "sources": [
+   {
+    "host": "www.foodnetwork.com",
+    "pathPrefix": "/recipes/alton-brown/",
+    "label": "Food Network"
+   },
+   {
+    "host": "altonbrown.com",
+    "pathPrefix": "/recipes/",
+    "label": "AltonBrown.com"
+   }
+  ],
+  "cuisine": "american"
+ },
+ {
+  "id": "emeril",
+  "name": "Emeril Lagasse",
+  "credential": "James Beard Best Chef",
+  "about": "Chef-owner of Emeril's in New Orleans. Brought Creole and Cajun cooking to American TV.",
+  "kind": "restaurant",
+  "sources": [
+   {
+    "host": "www.foodnetwork.com",
+    "pathPrefix": "/recipes/emeril-lagasse/",
+    "label": "Food Network"
+   },
+   {
+    "host": "emerils.com",
+    "pathPrefix": "/recipes/",
+    "label": "Emerils.com"
+   }
+  ],
+  "cuisine": "american"
+ },
+ {
+  "id": "morimoto",
+  "name": "Masaharu Morimoto",
+  "credential": "Iron Chef",
+  "about": "Iron Chef on both the original Japanese show and Iron Chef America. Runs the Morimoto restaurants.",
+  "kind": "restaurant",
+  "sources": [
+   {
+    "host": "www.foodnetwork.com",
+    "pathPrefix": "/recipes/masaharu-morimoto/",
+    "label": "Food Network"
+   }
+  ],
+  "cuisine": "asian"
+ },
+ {
+  "id": "maneet",
+  "name": "Maneet Chauhan",
+  "credential": "Chopped judge",
+  "about": "Chopped judge and chef-owner of Chauhan Ale & Masala House in Nashville. Cooks bold, modern Indian food.",
+  "kind": "restaurant",
+  "sources": [
+   {
+    "host": "www.foodnetwork.com",
+    "pathPrefix": "/recipes/maneet-chauhan/",
+    "label": "Food Network"
+   }
+  ],
+  "cuisine": "asian"
+ },
+ {
+  "id": "garces",
+  "name": "Jose Garces",
+  "credential": "Iron Chef, James Beard Best Chef",
+  "about": "Iron Chef and James Beard Best Chef Mid-Atlantic. Known for Spanish and Latin cooking in Philadelphia.",
+  "kind": "restaurant",
+  "sources": [
+   {
+    "host": "www.foodnetwork.com",
+    "pathPrefix": "/recipes/jose-garces/",
+    "label": "Food Network"
+   }
+  ],
+  "cuisine": "mediterranean"
+ },
+ {
+  "id": "aaron",
+  "name": "Aarón Sánchez",
+  "credential": "Chopped judge",
+  "about": "Chopped judge and chef behind Johnny Sánchez in New Orleans. Cooks modern Mexican food.",
+  "kind": "restaurant",
+  "sources": [
+   {
+    "host": "www.foodnetwork.com",
+    "pathPrefix": "/recipes/aaron-sanchez/",
+    "label": "Food Network"
+   }
+  ],
+  "cuisine": "mexican"
+ },
+ {
+  "id": "zakarian",
+  "name": "Geoffrey Zakarian",
+  "credential": "Iron Chef",
+  "about": "Iron Chef and Chopped judge, with a long career in New York fine dining.",
+  "kind": "restaurant",
+  "sources": [
+   {
+    "host": "www.foodnetwork.com",
+    "pathPrefix": "/recipes/geoffrey-zakarian/",
+    "label": "Food Network"
+   }
+  ],
+  "cuisine": "american"
+ },
+ {
+  "id": "conant",
+  "name": "Scott Conant",
+  "credential": "Chopped judge, Scarpetta",
+  "about": "Chopped judge and founder of Scarpetta, famous for its spaghetti with tomato and basil.",
+  "kind": "restaurant",
+  "sources": [
+   {
+    "host": "www.foodnetwork.com",
+    "pathPrefix": "/recipes/scott-conant/",
+    "label": "Food Network"
+   }
+  ],
+  "cuisine": "italian"
+ },
+ {
+  "id": "ottolenghi",
+  "name": "Yotam Ottolenghi",
+  "credential": "Ottolenghi, London",
+  "about": "Chef-owner of the Ottolenghi delis and ROVI in London. Famous for bold, vegetable-led Middle Eastern cooking.",
+  "kind": "restaurant",
+  "sources": [
+   {
+    "host": "ottolenghi.co.uk",
+    "pathPrefix": "/recipes/",
+    "label": "Ottolenghi"
+   }
+  ],
+  "cuisine": "mediterranean"
+ },
+ {
+  "id": "bayless",
+  "name": "Rick Bayless",
+  "credential": "Top Chef Masters winner",
+  "about": "Won the first Top Chef Masters and James Beard Outstanding Chef. Chef-owner of Frontera Grill and Topolobampo in Chicago.",
+  "kind": "restaurant",
+  "sources": [
+   {
+    "host": "www.rickbayless.com",
+    "pathPrefix": "/recipe/",
+    "label": "RickBayless.com",
+    "titleOnly": true
+   }
+  ],
+  "cuisine": "mexican"
+ },
+ {
+  "id": "ripert",
+  "name": "Eric Ripert",
+  "credential": "3 Michelin stars",
+  "about": "Chef of Le Bernardin in New York, which has held three Michelin stars since the guide came to the city.",
+  "kind": "restaurant",
+  "sources": [
+   {
+    "host": "www.aveceric.com",
+    "pathPrefix": "/all-recipes/",
+    "label": "Avec Eric",
+    "titleOnly": true
+   }
+  ],
+  "cuisine": "french"
+ },
+ {
+  "id": "zimmern",
+  "name": "Andrew Zimmern",
+  "credential": "Bizarre Foods, James Beard Awards",
+  "about": "Host of Bizarre Foods and a four-time James Beard award winner. Cooks food from all over the world.",
+  "kind": "tv",
+  "sources": [
+   {
+    "host": "andrewzimmern.com",
+    "pathPrefix": "/recipes/",
+    "label": "AndrewZimmern.com",
+    "titleOnly": true
+   }
+  ],
+  "cuisine": "american"
+ },
+ {
+  "id": "nigella",
+  "name": "Nigella Lawson",
+  "credential": "Nigella Bites, BBC",
+  "about": "Author of How to Eat and host of Nigella Bites and Nigella Express. Generous, unfussy home cooking.",
+  "kind": "tv",
+  "sources": [
+   {
+    "host": "www.nigella.com",
+    "pathPrefix": "/recipes/",
+    "label": "Nigella.com",
+    "titleOnly": true
+   }
+  ],
+  "cuisine": "british"
  }
 ]

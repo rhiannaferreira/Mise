@@ -1,9 +1,15 @@
 import { search, formatMinutes, webSearchUrl, videoSearchUrl, norm } from './search.js';
 import { COURSES, CUISINES } from './categories.js';
+import { LEVELS } from './difficulty.js';
 
 const CRAVINGS = ['Carbonara', 'Roast chicken', 'Chicken soup', 'Tacos', 'Salmon', 'Tiramisu'];
 const COURSE_BY_ID = Object.fromEntries(COURSES.map(c => [c.id, c]));
 const CUISINE_BY_ID = Object.fromEntries(CUISINES.map(c => [c.id, c]));
+const LEVEL_BY_ID = Object.fromEntries(LEVELS.map(l => [l.id, l]));
+const LEVEL_RANK = { easy: 1, medium: 2, hard: 3 };
+const levelBadge = id => LEVEL_BY_ID[id]
+  ? `<span class="fact level" title="${esc(LEVEL_BY_ID[id].hint)}"><span class="pips" data-l="${id}" aria-hidden="true"><i></i><i></i><i></i></span>${esc(LEVEL_BY_ID[id].label)}</span>`
+  : '';
 
 // Simple line drawings for each course, in the same stroke style as the other icons.
 const COURSE_ICON = {
@@ -26,7 +32,7 @@ const store = {
   write(set) { try { localStorage.setItem(BOOK_KEY, JSON.stringify([...set])); } catch { /* private mode */ } },
 };
 
-const state = { q: '', chefs: new Set(), quick: false, video: false, book: false, pick: null, view: 'cards', sort: null, course: '', cuisine: '' };
+const state = { q: '', chefs: new Set(), quick: false, video: false, book: false, pick: null, view: 'cards', sort: null, course: '', cuisine: '', level: '' };
 let RECIPES = [];
 let CHEFS = [];
 let BY_ID = {};
@@ -56,6 +62,7 @@ function ticket(r) {
     r.rating && `<span class="fact rating" title="${r.ratingCount ? esc(r.ratingCount.toLocaleString()) + ' ratings' : 'Rating'}">${icon.star}${r.rating.toFixed(1)}</span>`,
     r.hasVideo === true && `<span class="fact video">${icon.play}Video</span>`,
   ].filter(Boolean);
+  const level = levelBadge(r.level);
   const watch = r.hasVideo === true
     ? ''
     : `<a class="btn btn-small" href="${esc(videoSearchUrl(chef.name, r.title))}" target="_blank" rel="noopener">${icon.play}Find a video</a>`;
@@ -72,13 +79,13 @@ function ticket(r) {
       </div>
     </div>
     <div class="ticket-foot">
-      <span class="ticket-actions">${watch}<a class="btn btn-small btn-tomato" href="${esc(r.url)}" target="_blank" rel="noopener">Cook this ${icon.out}</a></span>
+      ${level}<span class="ticket-actions">${watch}<a class="btn btn-small btn-tomato" href="${esc(r.url)}" target="_blank" rel="noopener">Cook this ${icon.out}</a></span>
     </div>
   </li>`;
 }
 
 function currentList() {
-  let list = search(RECIPES, BY_ID, { q: state.q, chefs: [...state.chefs], quick: state.quick, video: state.video, course: state.course, cuisine: state.cuisine });
+  let list = search(RECIPES, BY_ID, { q: state.q, chefs: [...state.chefs], quick: state.quick, video: state.video, course: state.course, cuisine: state.cuisine, level: state.level });
   if (state.book) list = list.filter(r => cookbook.has(r.url));
   return list;
 }
@@ -112,6 +119,7 @@ function render() {
 
   $('#quickBtn').setAttribute('aria-pressed', state.quick);
   $('#videoBtn').setAttribute('aria-pressed', state.video);
+  document.querySelectorAll('#levelPick [data-level]').forEach(b => b.setAttribute('aria-pressed', b.dataset.level === state.level));
   $('#bookBtn').setAttribute('aria-pressed', state.book);
   $('#bookCount').textContent = cookbook.size;
   document.querySelectorAll('#chefbar [data-chef]').forEach(b => {
@@ -131,6 +139,7 @@ const SORTS = {
   time: (a, b) => (a.totalMinutes ?? Infinity) - (b.totalMinutes ?? Infinity),
   rating: (a, b) => (b.rating ?? -1) - (a.rating ?? -1) || (b.ratingCount ?? 0) - (a.ratingCount ?? 0),
   chef: (a, b) => BY_ID[a.chef].name.localeCompare(BY_ID[b.chef].name),
+  level: (a, b) => (LEVEL_RANK[a.level] ?? 9) - (LEVEL_RANK[b.level] ?? 9),
 };
 
 // Every chef's take on the same dish, one row each, so the differences are easy to scan.
@@ -139,8 +148,8 @@ function compareTable(list) {
   const head = (key, label) => `<th scope="col"><button type="button" data-sort="${key}" aria-pressed="${state.sort === key}">${label}<span aria-hidden="true">${state.sort === key ? ' ↓' : ''}</span></button></th>`;
   const none = '<span class="nil">–</span>';
   return `<table class="compare">
-    <caption class="sr">Recipes side by side. Sort by chef, time or rating.</caption>
-    <thead><tr>${head('chef', 'Chef')}<th scope="col">Recipe</th>${head('time', 'Time')}${head('rating', 'Rating')}<th scope="col">Video</th><th scope="col"><span class="sr">Save</span></th></tr></thead>
+    <caption class="sr">Recipes side by side. Sort by chef, time, rating or level.</caption>
+    <thead><tr>${head('chef', 'Chef')}<th scope="col">Recipe</th>${head('time', 'Time')}${head('rating', 'Rating')}${head('level', 'Level')}<th scope="col">Video</th><th scope="col"><span class="sr">Save</span></th></tr></thead>
     <tbody>${rows.map(r => {
       const c = BY_ID[r.chef];
       const saved = cookbook.has(r.url);
@@ -149,6 +158,7 @@ function compareTable(list) {
         <td class="c-title"><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.title)}</a><small>${esc(r.source)}</small></td>
         <td class="c-num">${r.totalMinutes ? esc(formatMinutes(r.totalMinutes)) : none}</td>
         <td class="c-num">${r.rating ? `<span class="fact rating">${icon.star}${r.rating.toFixed(1)}</span>` : none}</td>
+        <td>${levelBadge(r.level) || none}</td>
         <td>${r.hasVideo === true
           ? `<span class="fact video">${icon.play}Yes</span>`
           : `<a class="c-find" href="${esc(videoSearchUrl(c.name, r.title))}" target="_blank" rel="noopener">Find one</a>`}</td>
@@ -163,7 +173,7 @@ function renderEmpty(list) {
   let msg;
   if (state.book && !cookbook.size) msg = '<h3>Your cookbook is empty</h3><p>Tap the bookmark on any recipe to keep it here for next time.</p>';
   else if (state.course || state.cuisine) msg = `<h3>Nothing here yet</h3><p>We don\u2019t have ${esc([CUISINE_BY_ID[state.cuisine]?.label, COURSE_BY_ID[state.course]?.label.toLowerCase()].filter(Boolean).join(' '))} from these chefs yet. Try another course or cuisine, or the search below.</p>`;
-  else if (state.quick || state.video) msg = '<h3>Nothing matches every filter</h3><p>Try turning off “30 minutes or less” or “Has a video”. Some recipes don’t list their time yet.</p>';
+  else if (state.quick || state.video || state.level) msg = '<h3>Nothing matches every filter</h3><p>Try a different level, or turn off “30 minutes or less” or “Has a video”. Some recipes don’t list their time yet.</p>';
   else msg = `<h3>Not on our shelf yet</h3><p>We haven’t collected ${state.q ? `“${esc(state.q)}”` : 'that'} from these chefs yet. The search below looks for it on their own sites.</p>`;
   el.innerHTML = `<li class="empty">${msg}</li>`;
 }
@@ -187,6 +197,7 @@ function renderActive() {
   if (state.cuisine) chips.push(['cuisine', CUISINE_BY_ID[state.cuisine].label]);
   if (state.quick) chips.push(['quick', '30 minutes or less']);
   if (state.video) chips.push(['video', 'Has a video']);
+  if (state.level) chips.push(['level', LEVEL_BY_ID[state.level].label]);
   $('#active').innerHTML = chips.map(([k, label]) =>
     `<button type="button" class="active-chip" data-clear="${k}" aria-label="Remove filter: ${esc(label)}">${esc(label)}<span aria-hidden="true">\u00d7</span></button>`).join('') +
     (chips.length > 1 ? '<button type="button" class="linkbtn" data-clear="all">Clear all</button>' : '');
@@ -284,6 +295,7 @@ function syncUrl() {
   if (state.view === 'compare') p.set('view', 'compare');
   if (state.course) p.set('course', state.course);
   if (state.cuisine) p.set('cuisine', state.cuisine);
+  if (state.level) p.set('level', state.level);
   const next = p.toString() ? `?${p}` : location.pathname;
   if (next !== location.search) history.replaceState(null, '', next + location.hash);
 }
@@ -298,6 +310,7 @@ function readUrl() {
   state.view = p.get('view') === 'compare' ? 'compare' : 'cards';
   state.course = COURSE_BY_ID[p.get('course')] ? p.get('course') : '';
   state.cuisine = CUISINE_BY_ID[p.get('cuisine')] ? p.get('cuisine') : '';
+  state.level = LEVEL_BY_ID[p.get('level')] ? p.get('level') : '';
   $('#q').value = state.q;
 }
 
@@ -334,10 +347,15 @@ function wire() {
     if (k === 'cuisine' || k === 'all') state.cuisine = '';
     if (k === 'quick' || k === 'all') state.quick = false;
     if (k === 'video' || k === 'all') state.video = false;
+    if (k === 'level' || k === 'all') state.level = '';
     render();
   });
   $('#quickBtn').addEventListener('click', () => { state.quick = !state.quick; render(); });
   $('#videoBtn').addEventListener('click', () => { state.video = !state.video; render(); });
+  $('#levelPick').addEventListener('click', e => {
+    const b = e.target.closest('[data-level]'); if (!b) return;
+    state.level = state.level === b.dataset.level ? '' : b.dataset.level; state.pick = null; render();
+  });
   $('#tiredBtn').addEventListener('click', pickForMe);
   $('#viewSwitch').addEventListener('click', e => {
     const b = e.target.closest('[data-view]'); if (!b) return;

@@ -1,20 +1,22 @@
 // Reads the schema.org Recipe data that recipe sites publish for search engines.
-// We keep only facts about the recipe (name, time, rating, video), never its text.
+// We keep only facts about the recipe (name, time, rating, video, difficulty), never its text.
+import { statedLevel, scoreLevel } from '../../src/difficulty.js';
 
-const SCRIPT_RE = /<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
+const SCRIPT_RE = /<script[^>]*type=["']?application\/ld\+json[^>]*>([\s\S]*?)<\/script>/gi;
 
 export function extractJsonLd(html) {
   const out = [];
   for (const m of html.matchAll(SCRIPT_RE)) {
     const raw = m[1].trim().replace(/^<!--|-->$/g, '');
-    try { out.push(JSON.parse(raw)); } catch { /* skip malformed blocks */ }
+    try { out.push(JSON.parse(raw)); continue; } catch { /* try again without stray control characters */ }
+    try { out.push(JSON.parse(raw.replace(/[\u0000-\u001f]+/g, ' '))); } catch { /* skip malformed blocks */ }
   }
   return out;
 }
 
 function isRecipe(node) {
   const t = node && node['@type'];
-  return Array.isArray(t) ? t.includes('Recipe') : t === 'Recipe';
+  return [].concat(t || []).some(x => /^(https?:\/\/schema\.org\/)?recipe$/i.test(String(x)));
 }
 
 export function findRecipe(blocks) {
@@ -48,6 +50,25 @@ const decode = s => String(s)
   .replace(/&amp;/g, '&').replace(/&#39;|&#039;|&apos;/g, "'").replace(/&quot;/g, '"')
   .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/\s+/g, ' ').trim();
 
+// Flattens recipeInstructions (a string, a list, HowToStep or HowToSection) into step texts.
+export function stepTexts(v) {
+  if (v == null) return [];
+  if (typeof v === 'string') {
+    const parts = v.replace(/<[^>]+>/g, '\n').split(/\n+|(?<=\.)\s+(?=\d+\.\s)/).map(s => s.trim()).filter(Boolean);
+    if (parts.length > 1) return parts;
+    // One long paragraph: count roughly two sentences per step.
+    const sentences = v.split(/(?<=[.!?])\s+/).filter(s => s.trim().length > 3);
+    return Array.from({ length: Math.max(1, Math.ceil(sentences.length / 2)) }, (_, i) => sentences.slice(i * 2, i * 2 + 2).join(' '));
+  }
+  if (Array.isArray(v)) return v.flatMap(stepTexts);
+  if (typeof v === 'object') {
+    if (v.itemListElement) return stepTexts(v.itemListElement);
+    if (v.text) return [String(v.text)];
+    if (v.name) return [String(v.name)];
+  }
+  return [];
+}
+
 export function recipeFacts(recipe) {
   if (!recipe) return null;
   const total = durationToMinutes(recipe.totalTime)
@@ -57,16 +78,27 @@ export function recipeFacts(recipe) {
   const count = Number.parseInt(r.ratingCount ?? r.reviewCount, 10);
   const author = [].concat(recipe.author || []).map(a => (typeof a === 'string' ? a : a?.name)).filter(Boolean);
   return {
-    title: recipe.name ? decode(recipe.name) : null,
+    title: recipe.name ? decode(recipe.name).replace(/\s*[|–—]\s*(recipes?|barefoot contessa|[^|]{0,30}\.com)\s*$/i, '').trim() : null,
+    category: text(recipe.recipeCategory).map(s => decode(s).toLowerCase()),
     author: author.map(decode),
     totalMinutes: total,
     rating: Number.isFinite(rating) ? Math.round(rating * 10) / 10 : null,
     ratingCount: Number.isFinite(count) ? count : null,
     hasVideo: Boolean(recipe.video && (recipe.video.contentUrl || recipe.video.embedUrl || recipe.video.url || Array.isArray(recipe.video))),
+    // Counted for the difficulty score, then dropped. Ingredients and steps are never kept.
+    _ingredients: [].concat(recipe.recipeIngredient || recipe.ingredients || []).length,
+    _steps: stepTexts(recipe.recipeInstructions),
     keywords: [...text(recipe.recipeCategory), ...text(recipe.recipeCuisine), ...text(recipe.keywords)].map(s => decode(s).toLowerCase()),
   };
 }
 
 export function factsFromHtml(html) {
-  return recipeFacts(findRecipe(extractJsonLd(html)));
+  const raw = recipeFacts(findRecipe(extractJsonLd(html)));
+  if (!raw) return null;
+  const { _ingredients, _steps, ...facts } = raw;
+  const scored = (_ingredients || _steps.length)
+    ? scoreLevel({ ingredients: _ingredients, steps: _steps.length, minutes: facts.totalMinutes, method: _steps.join(' '), title: facts.title || '' })
+    : null;
+  facts.level = statedLevel(html) ?? scored;
+  return facts;
 }

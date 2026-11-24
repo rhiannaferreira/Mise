@@ -84,6 +84,13 @@
         <button type="button" class="toggle" id="videoBtn" aria-pressed="false">
           <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m10 9 5 3-5 3z"/></svg>Has a video
         </button>
+        <div class="levels" role="group" aria-label="Difficulty" id="levelPick">
+          <span class="levels-label">Level</span>
+          <button type="button" data-level="" aria-pressed="true">Any</button>
+          <button type="button" data-level="easy" aria-pressed="false"><span class="pips" data-l="easy" aria-hidden="true"><i></i><i></i><i></i></span>Easy</button>
+          <button type="button" data-level="medium" aria-pressed="false"><span class="pips" data-l="medium" aria-hidden="true"><i></i><i></i><i></i></span>Medium</button>
+          <button type="button" data-level="hard" aria-pressed="false"><span class="pips" data-l="hard" aria-hidden="true"><i></i><i></i><i></i></span>Challenge</button>
+        </div>
         <button type="button" class="toggle toggle-plain" id="tiredBtn">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 8-8"/><path d="M4 4v5h5"/></svg>Too tired to choose? Pick for me
         </button>
