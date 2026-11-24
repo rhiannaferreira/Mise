@@ -289,3 +289,8 @@ async function start() {
 }
 
 start();
+
+// Lets Mise be added to a phone's home screen and keeps the cookbook usable offline.
+if ('serviceWorker' in navigator && import.meta.env.PROD) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
+}
