@@ -180,7 +180,8 @@
    {
     "host": "lidiasitaly.com",
     "pathPrefix": "/recipes/",
-    "label": "Lidia's Italy"
+    "label": "Lidia's Italy",
+    "titleOnly": true
    }
   ],
   "cuisine": "italian"
@@ -423,7 +424,8 @@
    {
     "host": "www.rickbayless.com",
     "pathPrefix": "/recipe/",
-    "label": "RickBayless.com"
+    "label": "RickBayless.com",
+    "titleOnly": true
    }
   ],
   "cuisine": "mexican"
@@ -453,7 +455,8 @@
    {
     "host": "andrewzimmern.com",
     "pathPrefix": "/recipes/",
-    "label": "AndrewZimmern.com"
+    "label": "AndrewZimmern.com",
+    "titleOnly": true
    }
   ],
   "cuisine": "american"
@@ -468,7 +471,8 @@
    {
     "host": "www.nigella.com",
     "pathPrefix": "/recipes/",
-    "label": "Nigella.com"
+    "label": "Nigella.com",
+    "titleOnly": true
    }
   ],
   "cuisine": "british"

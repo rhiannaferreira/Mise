@@ -89,6 +89,20 @@ function isNotADish(f) {
 }
 
 let lastHtml = '';
+
+// A few chefs' own sites (Lidia, Rick Bayless, Nigella) don't publish recipe data for search
+// engines. For those we keep just the page title and link, and estimate the level from the dish.
+function titleOnlyFacts(html, url, source) {
+  const slug = new URL(url).pathname.slice(source.pathPrefix.length).replace(/\/$/, '');
+  if (!slug || slug.includes('/')) return null; // a listing page, not a recipe
+  const raw = (html.match(/<meta[^>]+property=["']og:title["'][^>]+content=["']([^"']+)/i) || html.match(/<title>([^<]+)/i) || [])[1];
+  if (!raw) return null;
+  const title = decodeHtml(raw).split(/\s+[|–—-]\s+/)[0].trim();
+  if (!title || /\brecipes\b/i.test(title) || title.length > 90) return null;
+  const pretty = title === title.toUpperCase() ? title.toLowerCase().replace(/(^|[\s(-])\p{L}/gu, m => m.toUpperCase()) : title;
+  return { title: pretty, keywords: [], totalMinutes: null, rating: null, ratingCount: null, hasVideo: null, level: null, category: [] };
+}
+const decodeHtml = s => s.replace(/&amp;/g, '&').replace(/&#0?39;|&apos;|&#8217;|&rsquo;/g, '\u2019').replace(/&quot;/g, '"').replace(/&#8211;|&ndash;/g, '\u2013').replace(/\s+/g, ' ');
 function diagnose(html) {
   const ld = [...html.matchAll(/<script[^>]*ld\+json[^>]*>([\s\S]{0,4000}?)<\/script>/gi)].map(m => (m[1].match(/"@type"\s*:\s*("[^"]+"|\[[^\]]+\])/g) || []).join(',')).join(' ; ');
   return `${html.length} bytes; ld+json types: ${ld || 'none'}; microdata recipe: ${/itemtype=["'][^"']*schema\.org\/Recipe/i.test(html)}; title: ${(html.match(/<title>([^<]{0,80})/i) || [])[1]}`;
@@ -131,6 +145,7 @@ async function main() {
         if (!isAllowed(robots, new URL(url).pathname)) continue;
         let facts;
         try { lastHtml = await politeGet(url, delay); facts = factsFromHtml(lastHtml); } catch (e) { console.warn('  skip', e.message); continue; }
+        if (!facts?.title && source.titleOnly) facts = titleOnlyFacts(lastHtml, url, source);
         if (!facts?.title) { console.warn('  no recipe data:', url, diagnose(lastHtml)); continue; } // not a recipe page
         if (isNotADish(facts)) { known.add(url); continue; }
         if (recipes.some(r => r.chef === chef.id && r.title.toLowerCase() === facts.title.toLowerCase() && r.url !== url)) { known.add(url); continue; }
@@ -139,7 +154,7 @@ async function main() {
           url, chef: chef.id, source: source.label, title: facts.title,
           tags: deriveTags(facts.title, facts.keywords),
           totalMinutes: facts.totalMinutes, rating: facts.rating, ratingCount: facts.ratingCount,
-          hasVideo: facts.hasVideo, level: facts.level, origin: isNew ? 'collected' : undefined, checkedAt: today,
+          hasVideo: facts.hasVideo, level: facts.level ?? guessLevel(facts.title, facts.totalMinutes), origin: isNew ? 'collected' : undefined, checkedAt: today,
           // Hand-picked recipes keep the course and cuisine we gave them.
           course: isNew ? guessCourse(facts.title, facts.keywords) : undefined,
           cuisine: isNew ? guessCuisine(facts.title, facts.keywords, chef.cuisine) : undefined,

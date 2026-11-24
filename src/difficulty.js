@@ -23,6 +23,9 @@ const TECHNIQUES = [
 const HARD_DISHES = /\b(wellington|soufflé|souffle|croissant|consomm|cassoulet|baklava|macarons?\b|mille|opera cake|puff pastry|terrine|pâté|pate en croute|ballotine|galantine|laminated|choux|croquembouche|beignet|brioche|sourdough|ramen|mole\b|tamales|bouillabaisse|paella|ravioli|tortellini|cappelletti|agnolotti|handmade pasta|fresh pasta|pasta dough|gnocchi|risotto|duck confit|confit|porchetta|crown roast|beef bourguignon|bourguignon|coq au vin|dumplings|bao|pastry|layer cake|tarts?\b|roulade|doughnut|donut|cheesecake|caramel|biryani|paratha|croqueta|sushi|gumbo|pastiera)/;
 const EASY_DISHES = /\b(salad|toast|sandwich|dip\b|guacamole|bruschetta|crostini|smoothie|scrambled|omelet|vinaigrette|slaw|quesadilla|grilled cheese|frittata|aglio|cacio e pepe|pesto|roasted vegetables|sheet.pan|one.pan|5.ingredient|quick|easy|simple|weeknight)/;
 
+// Baking leaves less room for error than a stovetop dish of the same size.
+export const BAKES = /\b(cream pie|pie\b|cake|crostata|galette|marshmallow|waffle|biscuit|buns?\b|bread\b|focaccia|torte|souffl|meringue|pavlova|eclair|profiterole)/;
+
 const STATED = [
   [/^(easy|beginner|super easy|simple|not too tricky)$/i, 'easy'],
   [/^(intermediate|medium|moderate|showing off a little)$/i, 'medium'],
@@ -63,6 +66,7 @@ export function scoreLevel({ ingredients = 0, steps = 0, minutes = null, method 
   const t = ' ' + title.toLowerCase() + ' ';
   if (HARD_DISHES.test(t)) pts += 2;
   if (EASY_DISHES.test(t)) pts -= 1;
+  if (BAKES.test(t)) pts += 1;
   return pts >= 4 ? 'hard' : pts >= 2 ? 'medium' : 'easy';
 }
 
