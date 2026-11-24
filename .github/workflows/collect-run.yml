@@ -1,0 +1,23 @@
+name: Collect recipes (one-off run)
+on:
+  push:
+    branches: [collect-run]
+permissions:
+  contents: write
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/crawl.mjs --max-new 40 --only lidia,bayless,zimmern,nigella
+      - name: Save results to this branch
+        run: |
+          git config user.name "mise-collector"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data/recipes.json
+          git commit -m "Collected recipes [skip ci]" || exit 0
+          git push
