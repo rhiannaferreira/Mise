@@ -241,6 +241,11 @@
     "host": "www.foodnetwork.com",
     "pathPrefix": "/recipes/marcus-samuelsson/",
     "label": "Food Network"
+   },
+   {
+    "host": "marcussamuelsson.com",
+    "pathPrefix": "/recipes/",
+    "label": "MarcusSamuelsson.com"
    }
   ],
   "cuisine": "american"
@@ -274,6 +279,11 @@
     "host": "www.foodnetwork.com",
     "pathPrefix": "/recipes/alton-brown/",
     "label": "Food Network"
+   },
+   {
+    "host": "altonbrown.com",
+    "pathPrefix": "/recipes/",
+    "label": "AltonBrown.com"
    }
   ],
   "cuisine": "american"
@@ -289,6 +299,11 @@
     "host": "www.foodnetwork.com",
     "pathPrefix": "/recipes/emeril-lagasse/",
     "label": "Food Network"
+   },
+   {
+    "host": "emerils.com",
+    "pathPrefix": "/recipes/",
+    "label": "Emerils.com"
    }
   ],
   "cuisine": "american"
@@ -382,5 +397,80 @@
    }
   ],
   "cuisine": "italian"
+ },
+ {
+  "id": "ottolenghi",
+  "name": "Yotam Ottolenghi",
+  "credential": "Ottolenghi, London",
+  "about": "Chef-owner of the Ottolenghi delis and ROVI in London. Famous for bold, vegetable-led Middle Eastern cooking.",
+  "kind": "restaurant",
+  "sources": [
+   {
+    "host": "ottolenghi.co.uk",
+    "pathPrefix": "/recipes/",
+    "label": "Ottolenghi"
+   }
+  ],
+  "cuisine": "mediterranean"
+ },
+ {
+  "id": "bayless",
+  "name": "Rick Bayless",
+  "credential": "Top Chef Masters winner",
+  "about": "Won the first Top Chef Masters and James Beard Outstanding Chef. Chef-owner of Frontera Grill and Topolobampo in Chicago.",
+  "kind": "restaurant",
+  "sources": [
+   {
+    "host": "www.rickbayless.com",
+    "pathPrefix": "/recipe/",
+    "label": "RickBayless.com"
+   }
+  ],
+  "cuisine": "mexican"
+ },
+ {
+  "id": "ripert",
+  "name": "Eric Ripert",
+  "credential": "3 Michelin stars",
+  "about": "Chef of Le Bernardin in New York, which has held three Michelin stars since the guide came to the city.",
+  "kind": "restaurant",
+  "sources": [
+   {
+    "host": "www.aveceric.com",
+    "pathPrefix": "/recipes/",
+    "label": "Avec Eric"
+   }
+  ],
+  "cuisine": "french"
+ },
+ {
+  "id": "zimmern",
+  "name": "Andrew Zimmern",
+  "credential": "Bizarre Foods, James Beard Awards",
+  "about": "Host of Bizarre Foods and a four-time James Beard award winner. Cooks food from all over the world.",
+  "kind": "tv",
+  "sources": [
+   {
+    "host": "andrewzimmern.com",
+    "pathPrefix": "/recipes/",
+    "label": "AndrewZimmern.com"
+   }
+  ],
+  "cuisine": "american"
+ },
+ {
+  "id": "nigella",
+  "name": "Nigella Lawson",
+  "credential": "Nigella Bites, BBC",
+  "about": "Author of How to Eat and host of Nigella Bites and Nigella Express. Generous, unfussy home cooking.",
+  "kind": "tv",
+  "sources": [
+   {
+    "host": "www.nigella.com",
+    "pathPrefix": "/recipes/",
+    "label": "Nigella.com"
+   }
+  ],
+  "cuisine": "british"
  }
 ]
