@@ -36,6 +36,43 @@
   "checkedAt": null
  },
  {
+  "url": "https://www.cbsnews.com/news/grilling-a-paella-feast",
+  "title": "Grilled Paella",
+  "chef": "andres",
+  "source": "CBS News",
+  "tags": [
+   "paella",
+   "rice",
+   "spanish",
+   "seafood"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null
+ },
+ {
+  "url": "https://joseandres.substack.com/p/tichis-gazpacho",
+  "title": "Tichi's Gazpacho",
+  "chef": "andres",
+  "source": "Longer Tables with José Andrés",
+  "tags": [
+   "soup",
+   "gazpacho",
+   "spanish",
+   "vegetarian",
+   "summer"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null
+ },
+ {
   "url": "https://foodnetwork.com/recipes/anne-burrell/pasta-bolognese-17329168",
   "title": "Pasta Bolognese",
   "chef": "anne",
@@ -63,6 +100,40 @@
    "pasta",
    "spaghetti",
    "carbonara"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null
+ },
+ {
+  "url": "https://www.cbsnews.com/news/the-dish-richard-blais-crab-cakes-with-brussels-sprouts-slaw",
+  "title": "Crab Cakes with Brussels Sprouts Slaw",
+  "chef": "blais",
+  "source": "CBS News",
+  "tags": [
+   "crab",
+   "seafood"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null
+ },
+ {
+  "url": "https://www.cbsnews.com/news/star-spangled-surf-n-turf-from-richard-blais",
+  "title": "Star-Spangled Surf and Turf",
+  "chef": "blais",
+  "source": "CBS News",
+  "tags": [
+   "steak",
+   "beef",
+   "seafood",
+   "grill"
   ],
   "totalMinutes": null,
   "rating": null,
@@ -798,6 +869,54 @@
   "checkedAt": null
  },
  {
+  "url": "https://www.masterclass.com/articles/thomas-kellers-perfect-oven-roasted-chicken",
+  "title": "Perfect Oven Roasted Chicken",
+  "chef": "keller",
+  "source": "MasterClass",
+  "tags": [
+   "chicken",
+   "roast"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null
+ },
+ {
+  "url": "https://goop.com/recipes/thomas-keller-roast-chicken/",
+  "title": "Roast Chicken (Poulet Rôti)",
+  "chef": "keller",
+  "source": "Goop",
+  "tags": [
+   "chicken",
+   "roast"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null
+ },
+ {
+  "url": "https://tastecooking.com/recipes/beef-ribeye-steak/",
+  "title": "Beef Ribeye Steak",
+  "chef": "kish",
+  "source": "TASTE",
+  "tags": [
+   "steak",
+   "beef"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null
+ },
+ {
   "url": "https://www.cbsnews.com/news/recipe-baked-stuffed-shells",
   "title": "Baked Stuffed Shells",
   "chef": "lidia",
@@ -942,6 +1061,58 @@
    "rigatoni",
    "spicy",
    "tomato"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null
+ },
+ {
+  "url": "https://www.pbs.org/wnet/americanmasters/jacques-pepin-makes-a-country-omelet/23411",
+  "title": "Country Omelet",
+  "chef": "pepin",
+  "source": "PBS American Masters",
+  "tags": [
+   "eggs",
+   "omelette",
+   "breakfast"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": true,
+  "origin": "hand-picked",
+  "checkedAt": null
+ },
+ {
+  "url": "https://www.pbs.org/wnet/americanmasters/jacques-pepin-makes-a-seafood-omelet/23423",
+  "title": "Seafood Omelet",
+  "chef": "pepin",
+  "source": "PBS American Masters",
+  "tags": [
+   "eggs",
+   "omelette",
+   "seafood"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": true,
+  "origin": "hand-picked",
+  "checkedAt": null
+ },
+ {
+  "url": "https://www.saveur.com/jacques-pepin-perfect-omelette",
+  "title": "The Perfect French Omelette",
+  "chef": "pepin",
+  "source": "Saveur",
+  "tags": [
+   "eggs",
+   "omelette",
+   "breakfast",
+   "quick"
   ],
   "totalMinutes": null,
   "rating": null,
@@ -1167,6 +1338,92 @@
    "salmon",
    "seafood",
    "fish"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null
+ },
+ {
+  "url": "https://www.cbsnews.com/news/recipe-bitter-greens-and-grapefruit-marcus-samuelsson",
+  "title": "Bitter Greens and Grapefruit",
+  "chef": "samuelsson",
+  "source": "CBS News",
+  "tags": [
+   "salad",
+   "vegetarian"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null
+ },
+ {
+  "url": "https://wtop.com/lifestyle/2026/02/marcus-samuelsson-shares-a-comfort-food-recipe-for-oxtail-pepperpot-with-dumplings/",
+  "title": "Oxtail Pepperpot with Dumplings",
+  "chef": "samuelsson",
+  "source": "WTOP",
+  "tags": [
+   "beef",
+   "stew",
+   "soup",
+   "comfort"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null
+ },
+ {
+  "url": "https://abcnews.go.com/food/story/marcus-samuelsson-shares-shrimp-grits-recipe-cookbook-73851183",
+  "title": "Shrimp and Grits",
+  "chef": "samuelsson",
+  "source": "ABC News",
+  "tags": [
+   "shrimp",
+   "seafood",
+   "grits",
+   "southern"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null
+ },
+ {
+  "url": "https://archive.jamesbeard.org/recipes/butterscotch-budino-with-caramel-sauce-and-rosemary-pine-nut-cookies",
+  "title": "Butterscotch Budino with Caramel Sauce",
+  "chef": "silverton",
+  "source": "James Beard Foundation",
+  "tags": [
+   "dessert",
+   "pudding",
+   "butterscotch"
+  ],
+  "totalMinutes": null,
+  "rating": null,
+  "ratingCount": null,
+  "hasVideo": null,
+  "origin": "hand-picked",
+  "checkedAt": null
+ },
+ {
+  "url": "https://www.oprah.com/food/nancys-pizza-dough",
+  "title": "Nancy's Pizza Dough",
+  "chef": "silverton",
+  "source": "Oprah.com",
+  "tags": [
+   "pizza",
+   "dough",
+   "baking"
   ],
   "totalMinutes": null,
   "rating": null,

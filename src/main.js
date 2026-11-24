@@ -266,6 +266,14 @@ function wire() {
     if (e.target.closest('[data-repick]')) pickForMe();
     if (e.target.closest('[data-unpick]')) { state.pick = null; render(); }
   });
+  // Press / anywhere to jump to the search box, Escape to clear it.
+  document.addEventListener('keydown', e => {
+    const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName);
+    if (e.key === '/' && !typing && !e.metaKey && !e.ctrlKey) { e.preventDefault(); $('#q').focus(); }
+    if (e.key === 'Escape' && document.activeElement === $('#q') && $('#q').value) {
+      $('#q').value = ''; state.q = ''; render();
+    }
+  });
   window.addEventListener('storage', e => { if (e.key === BOOK_KEY) { cookbook = store.read(); render(); } });
 }
 
