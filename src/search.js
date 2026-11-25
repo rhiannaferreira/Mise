@@ -8,7 +8,30 @@ const SYNONYMS = {
   prawn: 'shrimp', prawns: 'shrimp', fish: 'seafood', steak: 'beef', mince: 'beef',
   veggie: 'vegetarian', meatless: 'vegetarian',
 };
-const STOP = new Set(['recipe', 'recipes', 'a', 'an', 'the', 'with', 'and', 'easy', 'best', 'how', 'to', 'make', 'for']);
+const STOP = new Set(['recipe', 'recipes', 'a', 'an', 'the', 'with', 'and', 'best', 'how', 'to', 'make', 'for', 'something', 'some', 'dish', 'dishes', 'food']);
+
+// Words that describe what kind of recipe you want rather than what's in it.
+// "easy indian", "a challenging dessert", "spanish appetizers" all work.
+const LEVEL_WORDS = {
+  easy: 'easy', simple: 'easy', beginner: 'easy', weeknight: 'easy', effortless: 'easy',
+  medium: 'medium', intermediate: 'medium',
+  hard: 'hard', harder: 'hard', challenge: 'hard', challenging: 'hard', difficult: 'hard', advanced: 'hard',
+  ambitious: 'hard', project: 'hard', impressive: 'hard', complex: 'hard', fancy: 'hard', showstopper: 'hard',
+};
+const CUISINE_WORDS = {
+  italian: 'italian', american: 'american', southern: 'american', cajun: 'american', creole: 'american',
+  french: 'french', mexican: 'mexican', latin: 'mexican', caribbean: 'mexican',
+  asian: 'asian', indian: 'asian', thai: 'asian', japanese: 'asian', chinese: 'asian', korean: 'asian', vietnamese: 'asian',
+  british: 'british', english: 'british', mediterranean: 'mediterranean', greek: 'mediterranean', spanish: 'mediterranean',
+  moroccan: 'mediterranean', lebanese: 'mediterranean', middle: 'mediterranean', eastern: 'mediterranean',
+};
+const COURSE_WORDS = {
+  appetizer: 'appetizers', appetizers: 'appetizers', starter: 'appetizers', starters: 'appetizers', snack: 'appetizers', snacks: 'appetizers', tapas: 'appetizers',
+  dessert: 'desserts', desserts: 'desserts', sweet: 'desserts', sweets: 'desserts', baking: 'desserts', pudding: 'desserts',
+  breakfast: 'breakfast', brunch: 'breakfast', soup: 'soups', soups: 'soups', stew: 'soups', stews: 'soups',
+  side: 'sides', sides: 'sides', salad: 'sides', salads: 'sides', main: 'mains', mains: 'mains', entree: 'mains',
+};
+
 
 export function tokens(q) {
   return norm(q).split(/[^a-z0-9]+/).filter(w => w && !STOP.has(w));
@@ -35,6 +58,9 @@ export function score(recipe, chef, words) {
       else if (fieldHas(tags, v)) best = Math.max(best, v === w ? 3 : 2);
       else if (fieldHas(who, v)) best = Math.max(best, 2);
     }
+    if (!best && LEVEL_WORDS[w] && recipe.level === LEVEL_WORDS[w]) best = 2;
+    if (!best && CUISINE_WORDS[w] && recipe.cuisine === CUISINE_WORDS[w]) best = 2;
+    if (!best && COURSE_WORDS[w] && recipe.course === COURSE_WORDS[w]) best = 2;
     if (!best) return 0; // every word has to match somewhere
     total += best;
   }

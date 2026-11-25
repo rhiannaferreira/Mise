@@ -9,12 +9,17 @@ const FAMILIES = {
   dessert: ['cake', 'cookie', 'cookies', 'pie', 'tart', 'brownie', 'brownies', 'pudding', 'ice cream'],
 };
 
+// Site taxonomy headings that say nothing about the dish.
+const NOISE = new Set(['course', 'dish type', 'main ingredient', 'method', 'occasion', 'cuisine', 'diet', 'recipes', 'recipe', 'collection', 'special diets', 'season']);
+
 export function deriveTags(title = '', keywords = []) {
   const hay = ' ' + [title, ...keywords].join(' ').toLowerCase() + ' ';
   const tags = new Set();
   for (const [family, words] of Object.entries(FAMILIES)) {
     if (words.some(w => hay.includes(' ' + w + ' ') || hay.includes(' ' + w + ',') || hay.includes(' ' + w + 's '))) tags.add(family);
   }
-  for (const k of keywords) if (k.length <= 24) tags.add(k);
+  // Desserts are judged on the title only: site keywords like "pies & pastries" also cover samosas.
+  if (tags.has('dessert') && !FAMILIES.dessert.some(w => (' ' + title.toLowerCase() + ' ').match(new RegExp(`\\b${w}s?\\b`)))) tags.delete('dessert');
+  for (const k of keywords) if (k.length <= 24 && !NOISE.has(k)) tags.add(k);
   return [...tags];
 }
