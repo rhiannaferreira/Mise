@@ -91,6 +91,9 @@
           <button type="button" data-level="medium" aria-pressed="false"><span class="pips" data-l="medium" aria-hidden="true"><i></i><i></i><i></i></span>Medium</button>
           <button type="button" data-level="hard" aria-pressed="false"><span class="pips" data-l="hard" aria-hidden="true"><i></i><i></i><i></i></span>Challenge</button>
         </div>
+        <button type="button" class="toggle toggle-plain" id="menuBtn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17h18M5 17a7 7 0 0 1 14 0M12 8V6M10 6h4M4 20h16"/></svg>Plan a three-course dinner
+        </button>
         <button type="button" class="toggle toggle-plain" id="tiredBtn">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 8-8"/><path d="M4 4v5h5"/></svg>Too tired to choose? Pick for me
         </button>
@@ -117,6 +120,7 @@
       </div>
       <div class="profile" id="profile" hidden></div>
       <div class="pick" id="pick" hidden></div>
+      <section class="menu-card" id="menu" hidden aria-label="Your three-course dinner"></section>
       <ol class="tickets" id="tickets" aria-busy="true">
         <li class="ticket skeleton" aria-hidden="true"></li><li class="ticket skeleton" aria-hidden="true"></li><li class="ticket skeleton" aria-hidden="true"></li>
         <li class="ticket skeleton" aria-hidden="true"></li><li class="ticket skeleton" aria-hidden="true"></li><li class="ticket skeleton" aria-hidden="true"></li>

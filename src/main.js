@@ -32,7 +32,7 @@ const store = {
   write(set) { try { localStorage.setItem(BOOK_KEY, JSON.stringify([...set])); } catch { /* private mode */ } },
 };
 
-const state = { q: '', chefs: new Set(), quick: false, video: false, book: false, pick: null, view: 'cards', sort: null, course: '', cuisine: '', level: '' };
+const state = { q: '', chefs: new Set(), quick: false, video: false, book: false, pick: null, view: 'cards', sort: null, course: '', cuisine: '', level: '', menu: null };
 let RECIPES = [];
 let CHEFS = [];
 let BY_ID = {};
@@ -116,6 +116,7 @@ function render() {
   renderProfile();
   renderShelf();
   renderPick();
+  renderMenu();
 
   $('#quickBtn').setAttribute('aria-pressed', state.quick);
   $('#videoBtn').setAttribute('aria-pressed', state.video);
@@ -272,6 +273,76 @@ function pickForMe() {
   $('#pick').scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
+// A three-course dinner from one kitchen: a starter, a main and a dessert.
+const MENU_COURSES = [
+  { key: 'starter', label: 'To start', from: ['appetizers', 'soups', 'sides'] },
+  { key: 'main', label: 'The main', from: ['mains', 'pasta'] },
+  { key: 'dessert', label: 'To finish', from: ['desserts'] },
+];
+const pickOne = list => list[Math.floor(Math.random() * list.length)] || null;
+
+function menuDish(course, cuisine, avoid) {
+  const fits = r => course.from.includes(r.course) && r !== avoid;
+  const tiers = [
+    r => fits(r) && r.cuisine === cuisine && (!state.level || r.level === state.level) && r.course === course.from[0],
+    r => fits(r) && r.cuisine === cuisine && (!state.level || r.level === state.level),
+    r => fits(r) && r.cuisine === cuisine,
+    r => fits(r) && (!state.level || r.level === state.level),
+  ];
+  // Prefer a different chef for each course, so one dinner shows off several cooks.
+  const used = new Set(MENU_COURSES.map(c => state.menu?.[c.key]?.chef).filter(id => id && id !== avoid?.chef));
+  for (const t of tiers) {
+    const pool = RECIPES.filter(t);
+    const fresh = pool.filter(r => !used.has(r.chef));
+    if (pool.length) return pickOne(fresh.length ? fresh : pool);
+  }
+  return null;
+}
+
+function planMenu(cuisine) {
+  const kitchens = CUISINES.map(c => c.id).filter(id => RECIPES.some(r => r.cuisine === id && r.course === 'mains'));
+  const pickCuisine = cuisine || state.cuisine || pickOne(kitchens.filter(id => id !== state.menu?.cuisine));
+  state.menu = { cuisine: pickCuisine };
+  for (const c of MENU_COURSES) state.menu[c.key] = menuDish(c, pickCuisine);
+  // The used-chef check runs as each course is filled, so fill a second time to balance the first pick too.
+  state.menu.starter = menuDish(MENU_COURSES[0], pickCuisine, state.menu.starter) || state.menu.starter;
+  state.pick = null;
+  render();
+  $('#menu').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function renderMenu() {
+  const el = $('#menu');
+  const m = state.menu;
+  if (!m) { el.hidden = true; el.innerHTML = ''; return; }
+  el.hidden = false;
+  const kitchen = CUISINE_BY_ID[m.cuisine]?.label || '';
+  const rows = MENU_COURSES.map(c => {
+    const r = m[c.key];
+    if (!r) return '';
+    const chef = BY_ID[r.chef];
+    const elsewhere = r.cuisine !== m.cuisine ? ` <span class="menu-note">from the ${esc(CUISINE_BY_ID[r.cuisine]?.label)} kitchen</span>` : '';
+    const time = formatMinutes(r.totalMinutes);
+    return `<li class="menu-course">
+      <span class="menu-label">${c.label}</span>
+      <a class="menu-dish" href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.title)}</a>
+      <span class="menu-meta">${esc(chef.name)}${time ? ' · ' + esc(time) : ''}${elsewhere}</span>
+      <span class="menu-row">${levelBadge(r.level)}<button type="button" class="linkbtn" data-swap="${c.key}" aria-label="Swap ${c.label.toLowerCase()}: ${esc(r.title)}">Swap</button></span>
+    </li>`;
+  }).join('<li class="menu-rule" aria-hidden="true">✦</li>');
+  el.innerHTML = `<div class="menu-paper">
+      <p class="menu-kicker">Tonight’s menu</p>
+      <h3 class="menu-title">${esc(kitchen)}</h3>
+      <ol class="menu-list">${rows}</ol>
+      <div class="menu-actions">
+        <button type="button" class="btn btn-small" data-replan>Another kitchen</button>
+        <button type="button" class="btn btn-small" data-reshuffle>Shuffle these dishes</button>
+        <button type="button" class="linkbtn" data-unmenu>Close</button>
+      </div>
+      <p class="menu-tip">Make the dessert first. It’s one less thing when guests arrive.</p>
+    </div>`;
+}
+
 function renderChefs() {
   const counts = RECIPES.reduce((m, r) => ((m[r.chef] = (m[r.chef] || 0) + 1), m), {});
   $('#chefbar').innerHTML = `<button type="button" class="chefchip all" data-chef="">Any chef</button>` +
@@ -356,7 +427,21 @@ function wire() {
     const b = e.target.closest('[data-level]'); if (!b) return;
     state.level = state.level === b.dataset.level ? '' : b.dataset.level; state.pick = null; render();
   });
-  $('#tiredBtn').addEventListener('click', pickForMe);
+  $('#tiredBtn').addEventListener('click', () => { state.menu = null; pickForMe(); });
+  $('#menuBtn').addEventListener('click', () => planMenu());
+  $('#menu').addEventListener('click', e => {
+    const swap = e.target.closest('[data-swap]');
+    if (swap) {
+      const c = MENU_COURSES.find(x => x.key === swap.dataset.swap);
+      state.menu[c.key] = menuDish(c, state.menu.cuisine, state.menu[c.key]) || state.menu[c.key];
+      renderMenu();
+      $(`#menu [data-swap="${c.key}"]`)?.focus();
+      return;
+    }
+    if (e.target.closest('[data-replan]')) { const keep = state.cuisine; state.cuisine = ''; planMenu(); state.cuisine = keep; render(); return; }
+    if (e.target.closest('[data-reshuffle]')) { planMenu(state.menu.cuisine); return; }
+    if (e.target.closest('[data-unmenu]')) { state.menu = null; render(); $('#menuBtn').focus(); }
+  });
   $('#viewSwitch').addEventListener('click', e => {
     const b = e.target.closest('[data-view]'); if (!b) return;
     state.view = b.dataset.view; render();
