@@ -11,6 +11,8 @@ Mise never copies recipes. The chef keeps the visit and the credit.
 - **Search by dish.** "Carbonara", "lemon pasta", "prawns". Dish families and everyday words are understood, so "spaghetti" finds pasta and "prawns" finds shrimp.
 - **Browse the menu.** Seven courses (appetizers, pasta and risotto, mains, soups and stews, salads and sides, breakfast, desserts) and seven cuisines, with counts, so you can wander when you don't have a dish in mind.
 - **Easy to Challenge.** Every recipe carries a level: Easy, Medium or Challenge. It comes from the chef's own page when they state one, and otherwise from the recipe's size and technique (how many ingredients and steps, how long it takes, and whether it asks for things like tempering or laminating). Filter by level when you want a weeknight win or a weekend project.
+- **Plan a three-course dinner.** One tap sets a starter, a main and a dessert from one kitchen, usually from three different chefs, on a card that looks like a restaurant's printed menu. Swap any course, or try another cuisine.
+- **Search the way you talk.** "Easy pasta", "challenging dessert", "spanish appetizers" and "indian" all work. Words about level, course and cuisine narrow the results.
 - **Credit up front.** Each recipe card names the chef and why they count ("3 Michelin stars", "Top Chef head judge").
 - **Built for tired evenings.** One tap for "30 minutes or less", one for "Has a video", and a "Too tired to choose? Pick for me" button that suggests something quick and well rated.
 - **My cookbook.** Bookmark recipes to come back to. Saved on your device, no account needed.

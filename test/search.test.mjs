@@ -36,7 +36,8 @@ test('filters by chef and video', () => {
 
 test('nonsense finds nothing', () => {
   assert.equal(search(recipes, byId, { q: 'zzqx' }).length, 0);
-  assert.deepEqual(tokens('The best Easy RECIPE'), []);
+  assert.deepEqual(tokens('The best RECIPE'), []);
+  assert.deepEqual(tokens('The best Easy RECIPE'), ['easy']); // "easy" now narrows to easy recipes
 });
 
 test('formats times like a person would', () => {
@@ -88,4 +89,18 @@ test('the collector guesses courses and cuisines from titles', async () => {
   assert.equal(guessCuisine('Beef Tacos', [], 'american'), 'mexican');
   assert.equal(guessCuisine('Chicken Noodle Soup', [], 'american'), 'american');
   assert.equal(guessCuisine('Roast Chicken', ['French'], 'american'), 'french');
+});
+
+test('search understands cuisines, courses and difficulty words', async () => {
+  const { search } = await import('../src/search.js');
+  const recipes = JSON.parse(await readFile(new URL('../public/data/recipes.json', import.meta.url), 'utf8'));
+  const chefs = JSON.parse(await readFile(new URL('../public/data/chefs.json', import.meta.url), 'utf8'));
+  const byId = Object.fromEntries(chefs.map(c => [c.id, c]));
+  const indian = search(recipes, byId, { q: 'indian' });
+  assert.ok(indian.length >= 10 && indian.every(r => r.cuisine === 'asian'));
+  const easyPasta = search(recipes, byId, { q: 'easy pasta' });
+  assert.ok(easyPasta.length >= 5 && easyPasta.every(r => r.level === 'easy' || /easy/i.test(r.title)));
+  const hardDessert = search(recipes, byId, { q: 'challenging dessert' });
+  assert.ok(hardDessert.length >= 3 && hardDessert.every(r => r.course === 'desserts' && r.level === 'hard'));
+  assert.ok(search(recipes, byId, { q: 'pad thai' }).some(r => /pad thai/i.test(r.title)));
 });
