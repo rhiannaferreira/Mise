@@ -279,6 +279,8 @@ const MENU_COURSES = [
   { key: 'main', label: 'The main', from: ['mains', 'pasta'] },
   { key: 'dessert', label: 'To finish', from: ['desserts'] },
 ];
+// Short, stable ids so a planned menu fits in a link you can text to guests.
+const shortId = url => [...url].reduce((h, c) => (Math.imul(h, 31) + c.charCodeAt(0)) >>> 0, 7).toString(36);
 const pickOne = list => list[Math.floor(Math.random() * list.length)] || null;
 
 function menuDish(course, cuisine, avoid) {
@@ -335,10 +337,12 @@ function renderMenu() {
       <h3 class="menu-title">${esc(kitchen)}</h3>
       <ol class="menu-list">${rows}</ol>
       <div class="menu-actions">
+        <button type="button" class="btn btn-small btn-tomato" data-share>Share this menu</button>
         <button type="button" class="btn btn-small" data-replan>Another kitchen</button>
         <button type="button" class="btn btn-small" data-reshuffle>Shuffle these dishes</button>
         <button type="button" class="linkbtn" data-unmenu>Close</button>
       </div>
+      <p class="menu-shared" role="status" aria-live="polite"></p>
       <p class="menu-tip">Make the dessert first. It’s one less thing when guests arrive.</p>
     </div>`;
 }
@@ -367,6 +371,7 @@ function syncUrl() {
   if (state.course) p.set('course', state.course);
   if (state.cuisine) p.set('cuisine', state.cuisine);
   if (state.level) p.set('level', state.level);
+  if (state.menu) p.set('menu', [state.menu.cuisine, ...MENU_COURSES.map(c => state.menu[c.key] ? shortId(state.menu[c.key].url) : '-')].join('.'));
   const next = p.toString() ? `?${p}` : location.pathname;
   if (next !== location.search) history.replaceState(null, '', next + location.hash);
 }
@@ -382,6 +387,12 @@ function readUrl() {
   state.course = COURSE_BY_ID[p.get('course')] ? p.get('course') : '';
   state.cuisine = CUISINE_BY_ID[p.get('cuisine')] ? p.get('cuisine') : '';
   state.level = LEVEL_BY_ID[p.get('level')] ? p.get('level') : '';
+  const menu = (p.get('menu') || '').split('.');
+  if (CUISINE_BY_ID[menu[0]]) {
+    const byShort = new Map(RECIPES.map(r => [shortId(r.url), r]));
+    state.menu = { cuisine: menu[0] };
+    MENU_COURSES.forEach((c, i) => { state.menu[c.key] = byShort.get(menu[i + 1]) || menuDish(c, menu[0]); });
+  }
   $('#q').value = state.q;
 }
 
@@ -435,11 +446,20 @@ function wire() {
       const c = MENU_COURSES.find(x => x.key === swap.dataset.swap);
       state.menu[c.key] = menuDish(c, state.menu.cuisine, state.menu[c.key]) || state.menu[c.key];
       renderMenu();
+      syncUrl();
       $(`#menu [data-swap="${c.key}"]`)?.focus();
       return;
     }
     if (e.target.closest('[data-replan]')) { const keep = state.cuisine; state.cuisine = ''; planMenu(); state.cuisine = keep; render(); return; }
     if (e.target.closest('[data-reshuffle]')) { planMenu(state.menu.cuisine); return; }
+    if (e.target.closest('[data-share]')) {
+      const link = location.href;
+      const done = msg => { $('#menu .menu-shared').textContent = msg; };
+      const title = `Dinner: ${MENU_COURSES.map(c => state.menu[c.key]?.title).filter(Boolean).join(', ')}`;
+      if (navigator.share) navigator.share({ title, url: link }).catch(() => {});
+      else navigator.clipboard?.writeText(link).then(() => done('Link copied. Send it to whoever\u2019s coming.'), () => done(link));
+      return;
+    }
     if (e.target.closest('[data-unmenu]')) { state.menu = null; render(); $('#menuBtn').focus(); }
   });
   $('#viewSwitch').addEventListener('click', e => {

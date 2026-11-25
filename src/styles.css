@@ -382,6 +382,8 @@ button { font: inherit; color: inherit; }
 .menu-row .linkbtn:hover { color: var(--ink); }
 .menu-rule { color: var(--tomato); font-size: .8rem; opacity: .7; }
 .menu-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center; margin-top: 22px; }
+.menu-shared { margin: 10px 0 0; font-size: .86rem; color: var(--basil); font-weight: 600; min-height: 0; }
+.menu-shared:empty { display: none; }
 .menu-tip { margin: 16px 0 0; font-size: .84rem; color: var(--muted); font-style: italic; }
 
 /* Wider web search shelf */
